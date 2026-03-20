@@ -5,7 +5,7 @@ import mammoth from 'mammoth'
 // PDF Worker configuration
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs`
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:8000')
 
 const STAGES = [
   'Extracting skills...',
