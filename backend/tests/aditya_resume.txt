@@ -1,0 +1,57 @@
+Aditya Banerjee
+aditya.banerjee12705@gmail.com 
+9880948780
+Bengaluru, India
+aditya-banerjee-082955329
+Aditya12705
+
+PROFILE
+Creative and self-driven web developer with a strong interest in full stack development. Experienced in academic and freelance projects, always eager to learn, build, and collaborate.
+
+LANGUAGE
+English: Native-level proficiency in reading, writing, and speaking.
+Hindi: Fluent in communication and comprehension.
+Bengali: Native/mother tongue; proficient in both written and spoken communication.
+French: Studied as a third language in school with basic reading and writing skills.
+
+WORK EXPERIENCE
+Full Stack Developer, MomoStreet (June 2025 - July 2025)
+- Designed and developed a full-stack restaurant menu and order management dashboard for a cloud kitchen startup.
+- Integrated Supabase for real-time menu storage, authentication, and persistent admin control.
+- Built responsive UI for daily menu updates, multi-meal categories, and subscription-based mess card options.
+- Tech Stack: React.js, Tailwind CSS, Supabase, Node.js
+
+Founder Engineer, Alethemyra (Startup) (May 2025 - June 2025)
+- Built the Minimum Viable Product (MVP) for a FinTech startup, incorporating user onboarding, document upload, KYC verification, and land/company data collection modules.
+- Collaborated closely with the founders to iterate on user flows, ensuring alignment with business goals.
+- Tech Stack: React.js, Render Postgress, Node.js
+
+Software Developer, Amity University Bangalore - Faculty Feedback System (April 2025 - May 2025)
+- Created a secure and anonymous web-based faculty feedback platform to streamline semester-end reviews.
+- Developed custom dashboards for students, faculty, and admins, enabling role-based access and performance analytics.
+- Tech Stack: Node.js, React.js, MongoDB, MySQL
+
+Web Developer, Amity University Bangalore - AMIGLORIA Fest Website (March 2025 - April 2025)
+- Created a secure and anonymous web-based faculty feedback platform to streamline semester-end reviews.
+- Developed custom dashboards for students, faculty, and admins, enabling role-based access and performance analytics.
+- Tech Stack: Node.js, React.js, MongoDB, MySQL
+
+EDUCATION
+Bachelor of Technology (B.Tech) in Computer Science and Engineering
+Amity University; Bengaluru, India (Aug 2024 - Present)
+- Pursuing a B.Tech in CS with focus on full stack web development, software engineering, and real-world application building.
+
+PCMC
+Chethana PU College; Bengaluru, India (June 2022 - Mar 2024)
+
+Secondary Education
+Air Force School Hebbal; Bengaluru, India (April 2016 - Mar 2022)
+
+SKILLS
+- Languages: JavaScript, Python, C/C++, HTML, CSS, SQL
+- Frontend: React.js, Tailwind CSS, Bootstrap
+- Backend: Node.js, Express.js, PHP
+- Database & Auth: MySQL, Firebase, Supabase
+- Tools & Platforms: Git, GitHub, Postman, Figma, VS Code, Netlify, Vercel
+- Other Skills: REST APIs, MVC Architecture, CRUD, Responsive Design
+- Soft Skills: Problem Solving, Collaboration, Time Management, Quick Learner

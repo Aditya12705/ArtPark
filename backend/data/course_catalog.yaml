@@ -1,129 +1,141 @@
-# PathForge Course Catalog – Software Engineering Domain
-# 25 courses covering all 40 skills in skills_graph.json
-# Non-technical / soft-skills courses: pm_101, agile_deep, tech_writing_101, stakeholder_pro, leadership_eng
+# PathForge Course Catalog – Multi-Domain (Tech, HR, Finance, Ops, Healthcare, Sales, Marketing)
+# 43 courses covering all 55 skills in skills_graph.json
+# Domains: Programming, Data, DevOps, Cloud, Soft Skills, HR, Finance, Operations, Healthcare, Sales, Marketing, Productivity
 
 courses:
 
   # ── PROGRAMMING ─────────────────────────────────────────────────────────────
 
   - id: py_zero_to_hero
-    title: "Python Zero to Hero"
-    provider: Coursera
-    url: "https://www.coursera.org/learn/python-zero-to-hero"
-    duration_hours: 24
+    title: "Python for Everybody"
+    provider: FreeCodeCamp (Free)
+    url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/"
+    duration_hours: 12
     level: beginner
+    cognitive_load: high
     teaches: [python_basics, python_oop]
     requires: []
-    description: "Covers Python fundamentals through object-oriented programming with hands-on projects."
+    description: "The definitive beginner course covering Python fundamentals, data structures, and OOP basics."
 
   - id: py_advanced_mastery
-    title: "Advanced Python Mastery"
-    provider: Real Python
-    url: "https://realpython.com/courses/advanced-python/"
-    duration_hours: 16
+    title: "Advanced Python Tutorials"
+    provider: Corey Schafer (YouTube)
+    url: "https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuqsLi9pG_ls67ad6NE"
+    duration_hours: 10
     level: advanced
+    cognitive_load: high
     teaches: [python_advanced]
     requires: [python_oop]
-    description: "Deep-dives into decorators, generators, async programming, and Python performance tuning."
+    description: "Deep-dives into decorators, generators, async programming, and object-oriented patterns."
 
   - id: js_fullstack
-    title: "JavaScript From Zero to Advanced"
-    provider: Udemy
-    url: "https://www.udemy.com/course/the-complete-javascript-course/"
-    duration_hours: 69
+    title: "JavaScript Algorithms & Data Structures"
+    provider: FreeCodeCamp (Free)
+    url: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/"
+    duration_hours: 40
     level: beginner
+    cognitive_load: high
     teaches: [javascript_basics, javascript_advanced]
     requires: []
-    description: "Comprehensive JavaScript course covering both fundamentals and advanced patterns with real projects."
+    description: "Comprehensive JavaScript course covering both fundamentals and advanced patterns with interactive coding."
 
   - id: ts_essentials
-    title: "TypeScript Essentials"
-    provider: Frontend Masters
-    url: "https://frontendmasters.com/courses/typescript-v4/"
-    duration_hours: 14
+    title: "The TypeScript Handbook"
+    provider: Official TypeScript (Free)
+    url: "https://www.typescriptlang.org/docs/handbook/intro.html"
+    duration_hours: 8
     level: intermediate
+    cognitive_load: high
     teaches: [typescript]
     requires: [javascript_advanced]
-    description: "Teaches TypeScript's type system, generics, decorators, and best practices for large codebases."
+    description: "The definitive guide to TypeScript's type system, maintenance, and modern features."
 
   - id: dsa_python
-    title: "Data Structures & Algorithms in Python"
-    provider: edX
-    url: "https://www.edx.org/course/data-structures-and-algorithms"
+    title: "Problem Solving with Algorithms & Data Structures"
+    provider: FreeCodeCamp (Free)
+    url: "https://www.freecodecamp.org/news/learn-algorithms-and-data-structures-in-python/"
     duration_hours: 30
     level: intermediate
+    cognitive_load: high
     teaches: [algorithms_and_ds]
     requires: [python_basics]
-    description: "Rigorous coverage of classic data structures and algorithms with Python implementations and Big-O analysis."
+    description: "Interactive textbook covering classic data structures and algorithms using Python."
 
   - id: sql_zero_to_pro
-    title: "SQL from Zero to Pro"
-    provider: DataCamp
-    url: "https://www.datacamp.com/tracks/sql-fundamentals"
-    duration_hours: 20
+    title: "SQLBolt: Learn SQL with Interactive Exercises"
+    provider: SQLBolt (Free)
+    url: "https://sqlbolt.com/"
+    duration_hours: 10
     level: beginner
+    cognitive_load: high
     teaches: [sql_basics, advanced_sql]
     requires: []
-    description: "Progressively teaches SQL from basic queries through window functions, CTEs, and query optimisation."
+    description: "Quick, effective, and free interactive lessons for mastering SQL queries from scratch."
 
   - id: api_design_fastapi
-    title: "REST API Design with FastAPI"
-    provider: TestDriven.io
-    url: "https://testdriven.io/courses/tdd-fastapi/"
-    duration_hours: 12
+    title: "Official FastAPI Tutorial"
+    provider: FastAPI (Free)
+    url: "https://fastapi.tiangolo.com/tutorial/"
+    duration_hours: 8
     level: intermediate
+    cognitive_load: high
     teaches: [rest_api_design]
     requires: [python_basics]
-    description: "Hands-on course building production-grade REST APIs with FastAPI, Pydantic, and pytest."
+    description: "The best way to learn FastAPI - the official documentation walkthrough."
 
   - id: tdd_python
-    title: "Test-Driven Development with Python"
-    provider: O'Reilly
-    url: "https://www.oreilly.com/library/view/test-driven-development-with/9781491958919/"
-    duration_hours: 18
+    title: "Pytest: Getting Started Guide"
+    provider: Pytest Docs (Free)
+    url: "https://docs.pytest.org/en/latest/getting-started.html"
+    duration_hours: 6
     level: intermediate
+    cognitive_load: high
     teaches: [testing_fundamentals]
     requires: [python_basics]
-    description: "Teaches TDD methodology with pytest, mock objects, and integration testing in a real Django application."
+    description: "Learn how to write effective tests and maintain code quality using the industry-standard Pytest framework."
 
   - id: system_design_interview
-    title: "System Design for Engineers"
-    provider: Educative
-    url: "https://www.educative.io/courses/grokking-the-system-design-interview"
-    duration_hours: 25
+    title: "The System Design Primer"
+    provider: GitHub (Open Source)
+    url: "https://github.com/donnemartin/system-design-primer"
+    duration_hours: 40
     level: advanced
+    cognitive_load: high
     teaches: [system_design]
     requires: [rest_api_design, sql_basics, algorithms_and_ds]
-    description: "Walks through designing scalable distributed systems including Twitter, YouTube, and Uber-style architectures."
+    description: "The most famous free guide to learning how to design large-scale systems."
 
   # ── DATA ─────────────────────────────────────────────────────────────────────
 
   - id: numpy_pandas_bootcamp
-    title: "NumPy & Pandas Bootcamp"
-    provider: DataCamp
-    url: "https://www.datacamp.com/tracks/data-analyst-with-python"
-    duration_hours: 22
+    title: "Pandas Micro-Course"
+    provider: Kaggle Learn (Free)
+    url: "https://www.kaggle.com/learn/pandas"
+    duration_hours: 10
     level: beginner
+    cognitive_load: high
     teaches: [numpy, pandas]
     requires: [python_basics]
-    description: "Hands-on introduction to numerical computing and tabular data manipulation using NumPy and Pandas."
+    description: "Learn the essential skills for data manipulation with Python's most popular data analysis library."
 
   - id: data_viz_python
-    title: "Data Visualisation with Python"
-    provider: Coursera
-    url: "https://www.coursera.org/learn/python-for-data-visualization"
-    duration_hours: 12
+    title: "Data Visualization"
+    provider: Kaggle Learn (Free)
+    url: "https://www.kaggle.com/learn/data-visualization"
+    duration_hours: 8
     level: beginner
+    cognitive_load: high
     teaches: [data_visualisation]
     requires: [pandas]
-    description: "Creates compelling charts and dashboards using Matplotlib, Seaborn, and Plotly Express."
+    description: "Hands-on guide to creating beautiful charts and graphs with Seaborn."
 
   - id: stats_for_ds
-    title: "Statistics for Data Science"
-    provider: Khan Academy
+    title: "Statistics and Probability"
+    provider: Khan Academy (Free)
     url: "https://www.khanacademy.org/math/statistics-probability"
     duration_hours: 30
     level: beginner
+    cognitive_load: high
     teaches: [statistics]
     requires: []
     description: "Covers probability, distributions, hypothesis testing, and regression analysis with intuitive examples."
@@ -134,46 +146,51 @@ courses:
     url: "https://www.coursera.org/specializations/machine-learning-introduction"
     duration_hours: 60
     level: intermediate
+    cognitive_load: high
     teaches: [machine_learning_fundamentals]
     requires: [numpy, pandas, statistics]
-    description: "The definitive ML specialisation covering supervised, unsupervised, and reinforcement learning algorithms."
+    description: "The gold standard ML course (audit for free). Covers supervised and unsupervised learning."
 
   - id: deep_learning_spec
-    title: "Deep Learning Specialisation"
-    provider: Coursera (deeplearning.ai)
-    url: "https://www.coursera.org/specializations/deep-learning"
-    duration_hours: 80
+    title: "Practical Deep Learning for Coders"
+    provider: fast.ai (Free)
+    url: "https://course.fast.ai/"
+    duration_hours: 40
     level: advanced
+    cognitive_load: high
     teaches: [deep_learning]
     requires: [machine_learning_fundamentals]
-    description: "Five-course series building neural networks from scratch through CNNs, RNNs, and sequence models."
+    description: "The most popular free deep learning course. Build and deploy world-class models from lesson 1."
 
   - id: huggingface_nlp
-    title: "NLP with Hugging Face Transformers"
-    provider: Hugging Face
+    title: "Hugging Face NLP Course"
+    provider: Hugging Face (Free)
     url: "https://huggingface.co/learn/nlp-course"
     duration_hours: 28
     level: advanced
+    cognitive_load: high
     teaches: [nlp_basics]
     requires: [machine_learning_fundamentals]
-    description: "Teaches tokenisation, fine-tuning BERT/GPT models, and building NLP pipelines with the Transformers library."
+    description: "Comprehensive guide to NLP with Transformers, covering tokenization, fine-tuning, and datasets."
 
   - id: mlops_practical
     title: "Practical MLOps"
-    provider: O'Reilly
-    url: "https://www.oreilly.com/library/view/practical-mlops/9781098103002/"
+    provider: Made With ML (Free)
+    url: "https://madewithml.com/"
     duration_hours: 35
     level: advanced
+    cognitive_load: high
     teaches: [mlops]
     requires: [machine_learning_fundamentals, docker, ci_cd]
-    description: "Covers the full ML lifecycle from experiment tracking with MLflow to model serving and production monitoring."
+    description: "Learn how to build, deploy and maintain models in production with a focus on real-world engineering."
 
   - id: data_engineering_zoomcamp
     title: "Data Engineering Zoomcamp"
-    provider: DataTalks.Club
+    provider: DataTalks.Club (Free)
     url: "https://github.com/DataTalksClub/data-engineering-zoomcamp"
     duration_hours: 50
     level: intermediate
+    cognitive_load: high
     teaches: [data_engineering]
     requires: [advanced_sql, python_advanced]
     description: "Free intensive course covering Spark, Airflow, dbt, BigQuery, and building end-to-end data pipelines."
@@ -181,125 +198,262 @@ courses:
   # ── DEVOPS ───────────────────────────────────────────────────────────────────
 
   - id: linux_shell_mastery
-    title: "Linux Command Line & Shell Scripting"
-    provider: edX (Linux Foundation)
-    url: "https://www.edx.org/course/introduction-to-linux"
-    duration_hours: 18
+    title: "Linux Command Line"
+    provider: FreeCodeCamp (Free)
+    url: "https://www.youtube.com/watch?v=oxuRxtrO2Ag"
+    duration_hours: 12
     level: beginner
+    cognitive_load: high
     teaches: [linux_cli, git_basics]
     requires: []
-    description: "Teaches Linux filesystem, process management, bash scripting, and collaborative Git workflows from scratch."
+    description: "Comprehensive guide to the Linux command line for beginners."
 
   - id: docker_kubernetes
-    title: "Docker & Kubernetes: The Practical Guide"
-    provider: Udemy
-    url: "https://www.udemy.com/course/docker-kubernetes-the-practical-guide/"
-    duration_hours: 23
+    title: "Docker and Kubernetes Tutorial"
+    provider: FreeCodeCamp (Free)
+    url: "https://www.youtube.com/watch?v=bhBSlnQcq2k"
+    duration_hours: 15
     level: intermediate
+    cognitive_load: high
     teaches: [docker, kubernetes]
     requires: [linux_cli]
-    description: "Builds containerised applications with Docker and orchestrates them at scale using Kubernetes and Helm."
+    description: "Full course on containerisation and orchestration."
 
   - id: cicd_github_actions
     title: "CI/CD with GitHub Actions"
-    provider: GitHub Learning Lab
-    url: "https://lab.github.com/githubtraining/github-actions"
-    duration_hours: 10
+    provider: GitHub Skills (Free)
+    url: "https://github.com/skills/hello-github-actions"
+    duration_hours: 4
     level: intermediate
+    cognitive_load: high
     teaches: [ci_cd]
     requires: [git_basics, docker]
-    description: "Designs multi-stage GitHub Actions pipelines for automated testing, linting, security scanning, and deployment."
+    description: "Official interactive GitHub course for learning CI/CD."
 
   - id: terraform_iac
-    title: "Infrastructure as Code with Terraform"
-    provider: HashiCorp Learn
+    title: "Terraform Tutorials"
+    provider: HashiCorp (Free)
     url: "https://developer.hashicorp.com/terraform/tutorials"
     duration_hours: 20
     level: intermediate
+    cognitive_load: high
     teaches: [infrastructure_as_code]
     requires: [cloud_fundamentals, linux_cli]
-    description: "Provisions cloud infrastructure on AWS, GCP, and Azure using Terraform modules and remote state."
+    description: "Official free tutorials for learning Terraform across cloud providers."
 
   - id: observability_stack
-    title: "Monitoring & Observability with Prometheus and Grafana"
-    provider: Linux Foundation
-    url: "https://training.linuxfoundation.org/training/monitoring-systems-and-services-with-prometheus-lfs241/"
-    duration_hours: 16
+    title: "Prometheus Fundamentals"
+    provider: Prometheus.io (Free)
+    url: "https://prometheus.io/docs/introduction/overview/"
+    duration_hours: 10
     level: advanced
+    cognitive_load: high
     teaches: [monitoring_observability]
     requires: [docker, kubernetes]
-    description: "Sets up Prometheus scraping, Grafana dashboards, Alertmanager rules, and distributed tracing with Jaeger."
+    description: "Official guide to monitoring systems and services with Prometheus."
 
   # ── CLOUD ─────────────────────────────────────────────────────────────────────
 
   - id: aws_saa_prep
-    title: "AWS Solutions Architect Associate"
-    provider: A Cloud Guru
-    url: "https://acloudguru.com/course/aws-certified-solutions-architect-associate-saa-c03"
-    duration_hours: 42
-    level: intermediate
+    title: "AWS Cloud Practitioner Essentials"
+    provider: FreeCodeCamp (YouTube)
+    url: "https://www.youtube.com/watch?v=SOTamWNgDKc"
+    duration_hours: 6
+    level: beginner
+    cognitive_load: high
     teaches: [cloud_fundamentals, aws_core, cloud_security]
     requires: [linux_cli]
-    description: "Prepares for the AWS SAA exam covering EC2, S3, VPC, IAM, RDS, and cloud security best practices."
+    description: "Official AWS course for learning the basics of cloud computing."
 
   - id: gcp_fundamentals
-    title: "Google Cloud Fundamentals & Core Services"
-    provider: Google Cloud Training
-    url: "https://cloud.google.com/training/courses/cloud-engineer-learning-path"
+    title: "Google Cloud Skills Boost"
+    provider: FreeCodeCamp (YouTube)
+    url: "https://www.youtube.com/watch?v=Z3S_LIdR7gE"
     duration_hours: 24
     level: intermediate
+    cognitive_load: high
     teaches: [gcp_core, serverless]
     requires: [cloud_fundamentals]
-    description: "Covers GCP core services including Compute Engine, BigQuery, Cloud Run, and serverless event-driven patterns."
+    description: "Official learning path for Google Cloud engineering."
+
+  - id: azure_devsecops_mastery
+    title: "Azure & DevSecOps Fundamentals"
+    provider: Microsoft Learn / YouTube
+    url: "https://www.youtube.com/watch?v=6m89-1M9x6U"
+    duration_hours: 20
+    level: intermediate
+    cognitive_load: high
+    teaches: [azure_core, devsecops, cloud_security]
+    requires: [cloud_fundamentals]
+    description: "Multi-cloud security and Azure core services masterclass covering OWASP, secrets, and IAM."
 
   # ── SOFT SKILLS (5 non-technical courses) ────────────────────────────────────
 
   - id: agile_deep
-    title: "Agile & Scrum Masterclass"
-    provider: Scrum Alliance
-    url: "https://www.scrumalliance.org/get-certified/practitioners/csm-certification"
+    title: "Agile Project Management"
+    provider: Google/Coursera (Free Audit)
+    url: "https://www.coursera.org/learn/agile-project-management"
     duration_hours: 14
     level: beginner
+    cognitive_load: low
     teaches: [agile_scrum, communication_fundamentals]
     requires: []
-    description: "Covers Scrum ceremonies, sprint planning, backlog refinement, and Agile mindset for teams of any size."
+    description: "Learn the foundations of Agile and Scrum through Google's professional PM series."
 
   - id: tech_writing_101
-    title: "Technical Writing for Engineers"
-    provider: Google (free)
-    url: "https://developers.google.com/tech-writing"
-    duration_hours: 8
+    title: "Technical Writing One"
+    provider: Google (Free)
+    url: "https://developers.google.com/tech-writing/one"
+    duration_hours: 4
     level: beginner
+    cognitive_load: low
     teaches: [technical_writing]
     requires: [communication_fundamentals]
-    description: "Google's free course teaching engineers to write clear documentation, API guides, and technical specifications."
+    description: "Google's free course teaching engineers to write clear documentation."
 
   - id: pm_101
-    title: "Project Management Fundamentals"
-    provider: PMI / Coursera
-    url: "https://www.coursera.org/professional-certificates/google-project-management"
-    duration_hours: 180
+    title: "Project Management Foundations"
+    provider: Google/Coursera (Free Audit)
+    url: "https://www.coursera.org/learn/project-management-foundations"
+    duration_hours: 15
     level: beginner
+    cognitive_load: low
     teaches: [project_management]
     requires: [agile_scrum]
-    description: "Google's PM certificate covering initiation, planning, execution, risk, and Agile project management."
+    description: "Foundational course on project management principles and execution."
 
   - id: stakeholder_pro
-    title: "Stakeholder Management & Executive Communication"
-    provider: LinkedIn Learning
-    url: "https://www.linkedin.com/learning/stakeholder-management"
-    duration_hours: 6
+    title: "Success with Stakeholders"
+    provider: Coursera (Free Audit)
+    url: "https://www.coursera.org/learn/stakeholder-management"
+    duration_hours: 10
     level: intermediate
+    cognitive_load: low
     teaches: [stakeholder_management]
     requires: [project_management]
-    description: "Teaches techniques for mapping stakeholders, managing expectations, and delivering impactful executive updates."
+    description: "Comprehensive guide to managing complex stakeholder relationships."
 
   - id: leadership_eng
-    title: "Engineering Leadership & Team Management"
-    provider: Reforge
-    url: "https://www.reforge.com/programs/engineering-leadership"
-    duration_hours: 20
+    title: "Leading Teams"
+    provider: Coursera (Free Audit)
+    url: "https://www.coursera.org/learn/leading-teams"
+    duration_hours: 12
     level: advanced
+    cognitive_load: low
     teaches: [team_leadership]
     requires: [project_management, communication_fundamentals]
-    description: "Practical program for senior engineers and leads covering mentoring, delegation, 1-on-1s, and building team culture."
+    description: "Develop the skills to lead high-performing technical teams."
+
+  # ── CROSS-DOMAIN: HR & PEOPLE OPERATIONS ──────────────────────────────────────
+
+  - id: hr_essentials
+    title: "Foundations of Human Resource Management"
+    provider: Coursera – SHRM (Free Audit)
+    url: "https://www.coursera.org/learn/human-resource-management"
+    duration_hours: 14
+    level: beginner
+    cognitive_load: low
+    teaches: [hr_fundamentals, recruitment_and_talent]
+    requires: [communication_fundamentals]
+    description: "Covers the full HR lifecycle: recruiting, onboarding, compliance, employee relations, and performance management from the SHRM framework."
+
+  - id: performance_mgmt_course
+    title: "Inspiring and Motivating Individuals"
+    provider: Coursera – Michigan (Free Audit)
+    url: "https://www.coursera.org/learn/motivating-people"
+    duration_hours: 10
+    level: intermediate
+    cognitive_load: low
+    teaches: [performance_management]
+    requires: [hr_fundamentals]
+    description: "Learn goal-setting, appraisal frameworks, OKRs, and motivational theory to drive team performance."
+
+  # ── CROSS-DOMAIN: FINANCE & ACCOUNTING ────────────────────────────────────────
+
+  - id: accounting_finance_basics
+    title: "Introduction to Accounting and Finance"
+    provider: edX – Wharton (Free Audit)
+    url: "https://www.edx.org/learn/accounting/university-of-pennsylvania-finance-accounting"
+    duration_hours: 16
+    level: beginner
+    cognitive_load: medium
+    teaches: [accounting_basics, financial_analysis]
+    requires: []
+    description: "Wharton's flagship intro to financial statements, cash flow, P&L analysis, and ratio-based valuation."
+
+  - id: budgeting_course
+    title: "Financial Planning & Budgeting"
+    provider: Coursera (Free Audit)
+    url: "https://www.coursera.org/learn/financial-management"
+    duration_hours: 12
+    level: intermediate
+    cognitive_load: medium
+    teaches: [budgeting_and_forecasting]
+    requires: [financial_analysis]
+    description: "Building budgets, variance analysis, rolling forecasts, and presenting financial plans to leadership."
+
+  # ── CROSS-DOMAIN: OPERATIONS & SUPPLY CHAIN ───────────────────────────────────
+
+  - id: supply_chain_ops
+    title: "Supply Chain Management: A Learning Perspective"
+    provider: edX – MITx (Free Audit)
+    url: "https://www.edx.org/learn/supply-chain-management/massachusetts-institute-of-technology-supply-chain-management"
+    duration_hours: 20
+    level: beginner
+    cognitive_load: medium
+    teaches: [supply_chain_basics, operations_management]
+    requires: []
+    description: "MIT's supply chain fundamentals: inventory control, logistics networks, demand planning, and lean operations."
+
+  # ── CROSS-DOMAIN: CUSTOMER SERVICE & SALES ────────────────────────────────────
+
+  - id: customer_service_excellence
+    title: "Customer Service Fundamentals"
+    provider: Coursera – IBM (Free)
+    url: "https://www.coursera.org/learn/customer-service-fundamentals"
+    duration_hours: 8
+    level: beginner
+    cognitive_load: low
+    teaches: [customer_service, sales_fundamentals]
+    requires: [communication_fundamentals]
+    description: "Master professional customer interactions, complaint handling, CRM tools, and NPS-led service design."
+
+  # ── CROSS-DOMAIN: PRODUCTIVITY & DATA LITERACY ────────────────────────────────
+
+  - id: excel_data_literacy
+    title: "Excel Skills for Business"
+    provider: Coursera – Macquarie (Free Audit)
+    url: "https://www.coursera.org/specializations/excel"
+    duration_hours: 18
+    level: beginner
+    cognitive_load: low
+    teaches: [microsoft_office, data_literacy]
+    requires: []
+    description: "From formulas and pivot tables to dashboards and data analysis – the world's most used productivity tool."
+
+  # ── CROSS-DOMAIN: HEALTHCARE OPERATIONS ──────────────────────────────────────
+
+  - id: healthcare_ops_101
+    title: "Healthcare Delivery in Low-Resource Settings"
+    provider: edX – HarvardX (Free)
+    url: "https://www.edx.org/learn/healthcare/harvard-university-healthcare-delivery-in-low-resource-settings"
+    duration_hours: 12
+    level: beginner
+    cognitive_load: medium
+    teaches: [healthcare_fundamentals]
+    requires: []
+    description: "Clinical workflows, patient safety culture, HIPAA compliance, EMR fundamentals, and quality improvement in healthcare settings."
+
+  # ── CROSS-DOMAIN: MARKETING ───────────────────────────────────────────────────
+
+  - id: marketing_fundamentals_course
+    title: "Marketing in a Digital World"
+    provider: Coursera – Illinois (Free Audit)
+    url: "https://www.coursera.org/learn/marketing-digital"
+    duration_hours: 10
+    level: beginner
+    cognitive_load: low
+    teaches: [marketing_basics]
+    requires: []
+    description: "Covers digital marketing strategy, content marketing, SEO fundamentals, and campaign analytics for non-marketers."
+

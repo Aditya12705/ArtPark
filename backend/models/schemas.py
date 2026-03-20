@@ -62,6 +62,14 @@ class CourseRecommendation(BaseModel):
         ...,
         description="Human-readable course title as it appears in the catalog.",
     )
+    provider: Optional[str] = Field(
+        None,
+        description="Logo or name of the platform hosting the course (e.g. 'Coursera').",
+    )
+    url: Optional[str] = Field(
+        None,
+        description="Direct link to the course platform.",
+    )
     duration_hours: float = Field(
         ...,
         gt=0,
@@ -82,6 +90,10 @@ class CourseRecommendation(BaseModel):
             "One- or two-sentence explanation of why this specific course was chosen "
             "for this candidate at this point in the pathway."
         ),
+    )
+    cognitive_load: Optional[str] = Field(
+        "low",
+        description="Difficulty level for load balancing: 'low', 'medium', or 'high'.",
     )
 
 
@@ -113,10 +125,10 @@ class ParseRequest(BaseModel):
 class ParseResponse(BaseModel):
     """Structured skills extracted from both the resume and the job description."""
 
-    candidate_skills: Dict[str, int] = Field(
+    candidate_skills: Dict[str, Dict[str, int]] = Field(
         ...,
         description=(
-            "Map of skill_id → proficiency level (1–5) inferred from the resume. "
+            "Map of skill_id → {level: 1–5, last_used_year: int} inferred from the resume. "
             "Only skills that Claude is confident about are included."
         ),
     )
@@ -163,11 +175,11 @@ class ParseResponse(BaseModel):
 class GapRequest(BaseModel):
     """Input for the /gap endpoint: candidate's current skills vs. required skills."""
 
-    candidate_skills: Dict[str, int] = Field(
+    candidate_skills: Dict[str, Dict[str, int]] = Field(
         ...,
         description=(
-            "Map of skill_id → current proficiency (1–5). "
-            "Typically taken directly from ParseResponse.candidate_skills."
+            "Map of skill_id → {level: 1–5, last_used_year: int}. "
+            "Used to compute temporal skill decay before gap analysis."
         ),
     )
     required_skills: Dict[str, int] = Field(
@@ -239,6 +251,11 @@ class PathwayRequest(BaseModel):
         ge=1,
         le=50,
         description="Maximum number of courses to include in the pathway. Defaults to 10.",
+    )
+    max_hours: Optional[int] = Field(
+        None,
+        ge=1,
+        description="Optional HR time budget constraint in hours. Pathway will be truncated to fit this budget.",
     )
     learner_level: Optional[str] = Field(
         "beginner",

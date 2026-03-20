@@ -55,11 +55,34 @@ from __future__ import annotations
 
 import logging
 from collections import deque
-from typing import Dict, List, Set
+from typing import Any, Dict, List, Set, cast
 
 from models.schemas import GapResponse, SkillGapDetail
 
 logger = logging.getLogger(__name__)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Public API
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def apply_skill_decay(
+    extracted_skills: Dict[str, Dict[str, int]],
+    current_year: int = 2026
+) -> Dict[str, int]:
+    decayed_skills: Dict[str, int] = {}
+    for skill_id, data in extracted_skills.items():
+        original_level = data.get("level", 0)
+        last_used = data.get("last_used_year", current_year)
+        years_idle = current_year - last_used
+
+        if years_idle <= 0:
+            decayed_skills[skill_id] = original_level
+        else:
+            penalty = int(years_idle * 0.5)
+            decayed_skills[skill_id] = max(1, original_level - penalty)
+    return decayed_skills
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -222,14 +245,15 @@ def propagate_prerequisites(
     while queue:
         skill_id = queue.popleft()
 
-        node = skills_graph.get(skill_id)
-        if node is None:
+        node: Dict[str, Any] = skills_graph.get(skill_id, {})
+        if not node:
             logger.debug("Skill '%s' not found in skills_graph — skipping BFS.", skill_id)
             continue
 
         prerequisites: List[str] = node.get("prerequisites", [])
 
-        for prereq_id in prerequisites:
+        for prereq_id_raw in prerequisites:
+            prereq_id: str = str(prereq_id_raw)
             if prereq_id in visited:
                 # Already processed (either a direct gap, already_competent,
                 # or discovered earlier in this BFS traversal)
@@ -237,14 +261,16 @@ def propagate_prerequisites(
 
             visited.add(prereq_id)
 
-            candidate_level = candidate_skills.get(prereq_id, 0)
+            candidate_level = int(candidate_skills.get(prereq_id, 0))
 
             # Use required=1 as the baseline for propagated prerequisites.
             # If the prereq somehow already appears in the gaps dict with a
             # higher requirement (shouldn't happen here, but defensive), keep max.
-            required_level = max(1, augmented.get(prereq_id, SkillGapDetail(
-                current=0, required=1, delta=1
-            )).required)
+            existing_gap = augmented.get(prereq_id)
+            if existing_gap:
+                required_level = max(1, int(existing_gap.required))
+            else:
+                required_level = 1
 
             delta = required_level - candidate_level
 
@@ -305,7 +331,7 @@ class GapEngine:
 
     def compute(
         self,
-        candidate_skills: Dict[str, int],
+        extracted_skills: dict[str, dict[str, int]],
         required_skills: Dict[str, int],
         propagate: bool = True,
     ) -> GapResponse:
@@ -314,8 +340,8 @@ class GapEngine:
 
         Parameters
         ----------
-        candidate_skills:
-            Map of skill_id → proficiency (1–5).
+        extracted_skills:
+            Map of skill_id → {level: 1–5, last_used_year: int}.
         required_skills:
             Map of skill_id → required level (1–5).
         propagate:
@@ -328,20 +354,23 @@ class GapEngine:
             Fully populated gap response, with propagated prerequisites merged
             into the gaps dict if propagate=True.
         """
-        # 1. Direct gap
+        # 1. Apply Temporal Skill Decay
+        candidate_skills = apply_skill_decay(extracted_skills)
+
+        # 2. Direct gap
         result = compute_gap(candidate_skills, required_skills)
 
         if not propagate or not self.skills_graph:
             return result
 
-        # 2. Propagate prerequisites into the gaps dict
+        # 3. Propagate prerequisites into the gaps dict
         augmented_gaps = propagate_prerequisites(
             gaps=result.gaps,
             candidate_skills=candidate_skills,
             skills_graph=self.skills_graph,
         )
 
-        # 3. Rebuild missing_entirely and total_gap_score to reflect propagated additions
+        # 4. Rebuild missing_entirely and total_gap_score to reflect propagated additions
         augmented_missing = [
             sid for sid, detail in augmented_gaps.items()
             if detail.current == 0

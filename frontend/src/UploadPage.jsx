@@ -1,4 +1,11 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import * as pdfjs from 'pdfjs-dist'
+import mammoth from 'mammoth'
+
+// PDF Worker configuration
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@5.5.207/build/pdf.worker.min.mjs`
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
 const STAGES = [
   'Extracting skills...',
@@ -33,52 +40,80 @@ function FileDropZone({ title, value, onChange, placeholder }) {
 
   const handleFile = async (file) => {
     if (!file) return
-    if (file.type === 'application/pdf') {
-       // Since frontend PDF parsing needs a library, we'll try to extract text 
-       // or alert the user to use the text area.
-       onChange(`[PDF Uploaded: ${file.name}]\nPlease paste the raw text here instead for best results.`)
-    } else {
-       const text = await file.text()
-       onChange(text)
+    
+    const fileType = file.name.split('.').pop().toLowerCase()
+    let extractedText = ""
+
+    try {
+      if (fileType === 'pdf') {
+        extractedText = await extractTextFromPDF(file)
+      } else if (fileType === 'docx' || fileType === 'doc') {
+        extractedText = await extractTextFromDOCX(file)
+      } else {
+        extractedText = await file.text()
+      }
+      onChange(extractedText)
+    } catch (err) {
+      console.error("Extraction failed:", err)
+      alert("Failed to extract text from file. Please ensure it's not password protected.")
     }
   }
 
+  const extractTextFromPDF = async (file) => {
+    const arrayBuffer = await file.arrayBuffer()
+    const loadingTask = pdfjs.getDocument({ data: arrayBuffer })
+    const pdf = await loadingTask.promise
+    let fullText = ""
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i)
+      const textContent = await page.getTextContent()
+      const pageText = textContent.items.map(item => item.str).join(' ')
+      fullText += pageText + "\n"
+    }
+    return fullText
+  }
+
+  const extractTextFromDOCX = async (file) => {
+    const arrayBuffer = await file.arrayBuffer()
+    const result = await mammoth.extractRawText({ arrayBuffer })
+    return result.value
+  }
+
   return (
-    <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-      <div className="px-5 py-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
-        <h2 className="font-semibold text-slate-800">{title}</h2>
+    <div className="neo-card flex flex-col h-full overflow-hidden">
+      <div className="px-6 py-5 border-b-2 border-white/5 bg-[#1a1a1e] flex justify-between items-center">
+        <h2 className="text-sm font-black uppercase tracking-[0.2em] text-white/50">{title}</h2>
         <button 
           onClick={() => fileInputRef.current?.click()}
-          className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+          className="text-xs font-bold text-[#bfff00] hover:underline"
         >
-          Browse file
+          SELECT_FILE
         </button>
         <input 
           type="file" 
           ref={fileInputRef} 
           onChange={handleFileChange} 
-          accept=".pdf,.txt" 
+          accept=".txt,.pdf,.docx,.doc" 
           className="hidden" 
         />
       </div>
 
       <div 
-        className={`flex-grow p-4 relative transition-colors ${isDragging ? 'bg-blue-50/50' : ''}`}
+        className={`flex-grow p-6 relative transition-all ${isDragging ? 'bg-[#bfff00]/5' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        {isDragging && (
-          <div className="absolute inset-0 z-10 border-2 border-dashed border-blue-400 rounded-lg m-4 bg-blue-50/50 flex items-center justify-center">
-            <p className="text-blue-600 font-medium text-lg">Drop file here</p>
-          </div>
-        )}
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={`Paste text here, or drag and drop a .txt file...\n\n${placeholder}`}
-          className="w-full h-full min-h-[400px] resize-none outline-none text-slate-700 bg-transparent placeholder-slate-400"
+          placeholder={placeholder}
+          className="w-full h-full min-h-[350px] resize-none outline-none text-white font-mono text-sm bg-transparent placeholder-white/10 leading-relaxed"
         />
+        <div className="absolute bottom-4 right-4 text-[10px] font-mono text-white/20 uppercase">
+          Input_Buffer_Active
+        </div>
       </div>
     </div>
   )
@@ -91,30 +126,30 @@ export default function UploadPage({ onComplete }) {
   const [loading, setLoading] = useState(false)
   const [stageIndex, setStageIndex] = useState(0)
   const [error, setError] = useState(null)
+  const [maxHours, setMaxHours] = useState(40)
 
-  const canSubmit = resume.trim().length > 50 && jd.trim().length > 50
+  const canSubmit = resume.trim().length > 20 && jd.trim().length > 20
 
   const handleGenerate = async () => {
     if (!canSubmit) return
-    
     setLoading(true)
     setError(null)
     setStageIndex(0)
 
     try {
-      // Step 1: Parse
-      const parseRes = await fetch('http://localhost:8000/parse/', {
+      const parseRes = await fetch(`${API_BASE_URL}/parse/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resume_text: resume, jd_text: jd })
       })
+      if (!parseRes.ok) {
+        const errData = await parseRes.json()
+        throw new Error(errData.detail || `Extraction failed (${parseRes.status})`)
+      }
       const parseData = await parseRes.json()
-      if (!parseRes.ok) throw new Error(parseData.detail || 'Extracting skills failed.')
-
       setStageIndex(1)
 
-      // Step 2: Gap
-      const gapRes = await fetch('http://localhost:8000/gap/', {
+      const gapRes = await fetch(`${API_BASE_URL}/gap/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -122,32 +157,28 @@ export default function UploadPage({ onComplete }) {
           required_skills: parseData.required_skills
         })
       })
+      if (!gapRes.ok) {
+        throw new Error(`Gap analysis failed (${gapRes.status})`)
+      }
       const gapData = await gapRes.json()
-      if (!gapRes.ok) throw new Error(gapData.detail || 'Gap analysis failed.')
-
       setStageIndex(2)
 
-      // Step 3: Pathway
-      const pathRes = await fetch('http://localhost:8000/pathway/', {
+      const pathRes = await fetch(`${API_BASE_URL}/pathway/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           gaps: gapData.gaps,
           already_competent: gapData.already_competent,
-          max_courses: 10,
+          max_courses: 15,
+          max_hours: maxHours,
           learner_level: 'beginner'
         })
       })
+      if (!pathRes.ok) {
+        throw new Error(`Pathway generation failed (${pathRes.status})`)
+      }
       const pathData = await pathRes.json()
-      if (!pathRes.ok) throw new Error(pathData.detail || 'Pathway generation failed.')
-
-      // Done
-      onComplete({
-        parseData,
-        gapData,
-        pathwayData: pathData
-      })
-
+      onComplete({ parseData, gapData, pathwayData: pathData })
     } catch (err) {
       setError(err.message)
     } finally {
@@ -156,77 +187,94 @@ export default function UploadPage({ onComplete }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">
-          Design your perfect learning journey
+    <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="mb-16">
+        <div className="inline-block px-3 py-1 bg-[#ff5f00]/10 border border-[#ff5f00]/30 text-[#ff5f00] text-[10px] font-black uppercase tracking-widest mb-4">
+          System_Status: Operational
+        </div>
+        <h2 className="text-6xl font-black text-white mb-6 tracking-tighter uppercase italic leading-[0.9]">
+          Engineered <br/>for <span className="text-[#bfff00]">Mastery</span>
         </h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Upload your resume and the target job description. PathForge will identify your skill gaps and build a personalised, ready-to-execute training pathway.
+        <p className="text-xl text-white/40 max-w-xl font-medium">
+          Upload tactical data to initialize pathway synthesis. <br/>
+          Zero noise. Pure performance.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <FileDropZone 
-          title="1. Your Resume"
+          title="Source_Resume"
           value={resume}
           onChange={setResume}
-          placeholder="e.g. Senior Software Engineer with 5 years experience in React, Python, and AWS..."
+          placeholder="PASTE_RESUME_CONTENT_HERE..."
         />
         <FileDropZone 
-          title="2. Target Job Description"
+          title="Target_JD"
           value={jd}
           onChange={setJd}
-          placeholder="e.g. We are looking for a Data Engineer proficient in Python, SQL, Airflow, and Snowflake..."
+          placeholder="PASTE_JOB_DESCRIPTION_HERE..."
         />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-end">
+        <div className="lg:col-span-1">
+          <div className="neo-card p-8 bg-black">
+             <div className="flex justify-between items-center mb-6">
+                <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Max_Duration_Limit</label>
+                <span className="text-2xl font-black text-[#ff5f00] font-mono whitespace-nowrap">
+                  {maxHours} HR
+                </span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="200"
+                step="5"
+                value={maxHours}
+                onChange={(e) => setMaxHours(parseInt(e.target.value))}
+                className="w-full h-8 bg-transparent accent-[#ff5f00] cursor-crosshair mb-2"
+              />
+              <div className="flex justify-between text-[8px] font-mono text-white/20 uppercase mb-1">
+                <span>Min_Cap (5h)</span>
+                <span>Max_Cap (200h)</span>
+              </div>
+              <div className="text-center text-[9px] font-mono text-[#ff5f00]/50 uppercase tracking-widest">
+                ≈ {Math.ceil(maxHours / 8)} week{Math.ceil(maxHours / 8) !== 1 ? 's' : ''} at 8hr/week
+              </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-2">
+            {loading ? (
+              <div className="neo-card bg-[#bfff00] p-8 flex items-center justify-between shadow-[8px_8px_0px_#000]">
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 border-4 border-black border-t-transparent animate-spin rounded-full"></div>
+                  <div>
+                    <h3 className="text-black font-black uppercase text-xl">{STAGES[stageIndex]}</h3>
+                    <p className="text-black/60 font-bold text-sm tracking-tight italic">SYNTESIZING_FLUID_PATHWAY...</p>
+                  </div>
+                </div>
+                <div className="text-4xl font-black text-black">
+                  {Math.round(((stageIndex + 1) / STAGES.length) * 100)}%
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={handleGenerate}
+                disabled={!canSubmit}
+                className={`w-full py-8 neo-button text-3xl italic ${!canSubmit ? 'opacity-20 cursor-not-allowed grayscale' : ''}`}
+              >
+                INITIALIZE_SYNTHESIS
+              </button>
+            )}
+        </div>
       </div>
 
       {error && (
-        <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-          <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <div>
-            <h3 className="text-red-800 font-medium text-sm">Action failed</h3>
-            <p className="text-red-700 text-sm mt-1">{error}</p>
-          </div>
+        <div className="mt-12 p-6 bg-red-950/20 border-2 border-red-500/30 text-red-500 font-mono text-sm leading-relaxed">
+          <span className="font-black mr-2">[ERROR_CRITICAL]</span> {error}
         </div>
       )}
-
-      <div className="flex flex-col items-center justify-center">
-        {loading ? (
-          <div className="bg-white px-8 py-6 rounded-2xl shadow-sm border border-slate-200 w-full max-w-md flex flex-col items-center">
-            <div className="relative w-16 h-16 mb-4">
-              <div className="absolute inset-0 rounded-full border-4 border-slate-100"></div>
-              <div className="absolute inset-0 rounded-full border-4 border-blue-600 border-t-transparent animate-spin"></div>
-            </div>
-            <p className="font-semibold text-slate-800 mb-1">{STAGES[stageIndex]}</p>
-            <p className="text-sm text-slate-500">This usually takes about {stageIndex === 0 ? '15' : '5'} seconds.</p>
-            
-            <div className="w-full bg-slate-100 h-1.5 rounded-full mt-5 overflow-hidden">
-              <div 
-                className="bg-blue-600 h-full rounded-full transition-all duration-500 ease-out"
-                style={{ width: `${((stageIndex + 1) / STAGES.length) * 100}%` }}
-              ></div>
-            </div>
-          </div>
-        ) : (
-          <button
-            onClick={handleGenerate}
-            disabled={!canSubmit}
-            className={`
-              px-8 py-4 rounded-xl font-bold text-lg shadow-sm transition-all
-              ${canSubmit 
-                ? 'bg-blue-600 hover:bg-blue-700 text-white hover:shadow-md transform hover:-translate-y-0.5' 
-                : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'}
-            `}
-          >
-            Generate my learning pathway
-          </button>
-        )}
-      </div>
-
     </div>
   )
 }

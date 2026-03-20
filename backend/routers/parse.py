@@ -3,12 +3,12 @@ routers/parse.py – POST /parse
 
 Pipeline:
   1. Read valid skill_ids from app.state.skills_graph  (loaded at startup)
-  2. Call ClaudeService.extract_skills(resume_text, jd_text, skill_ids)
+  2. Call GroqService.extract_skills(resume_text, jd_text, skill_ids)
   3. Return ParseResponse
 
 Error surface:
   422  – Pydantic validation failure (FastAPI built-in)
-  503  – Anthropic API unavailable or key missing
+  503  – Groq API unavailable or key missing
   500  – Unexpected server error
 """
 
@@ -17,11 +17,11 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, List
 
-import anthropic
+import groq
 from fastapi import APIRouter, Depends, HTTPException, Request
 
 from models.schemas import ParseRequest, ParseResponse
-from services.claude_service import ClaudeService
+from services.groq_service import GroqService
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -31,9 +31,9 @@ router = APIRouter()
 # Dependency injection
 # ─────────────────────────────────────────────────────────────────────────────
 
-def get_claude_service() -> ClaudeService:
-    """Return a fresh ClaudeService; the Anthropic client is lazily created."""
-    return ClaudeService()
+def get_groq_service() -> GroqService:
+    """Return a fresh GroqService; the client is lazily created."""
+    return GroqService()
 
 
 def get_skills_graph(request: Request) -> Dict[str, Any]:
@@ -52,19 +52,20 @@ def get_skills_graph(request: Request) -> Dict[str, Any]:
     responses={
         200: {"description": "Skills successfully extracted"},
         422: {"description": "Request body failed validation"},
-        503: {"description": "Anthropic API unavailable"},
+        503: {"description": "Groq API unavailable"},
         500: {"description": "Unexpected server error"},
     },
 )
 async def parse_resume(
     payload: ParseRequest,
-    claude: ClaudeService      = Depends(get_claude_service),
+    groq_svc: GroqService      = Depends(get_groq_service),
     skills_graph: Dict[str, Any] = Depends(get_skills_graph),
 ) -> ParseResponse:
     """
     Extract candidate skills (from resume) and required skills (from JD)
-    using Claude.  Only skill IDs present in `skills_graph.json` may appear
-    in the response — all others are silently discarded (zero-hallucination).
+    using Groq Llama-3.3-70B.  Only skill IDs present in `skills_graph.json`
+    may appear in the response — all others are silently discarded
+    (zero-hallucination enforcement via allowlist).
 
     **Proficiency scale:** 1 = Awareness → 5 = Expert
     """
@@ -79,34 +80,26 @@ async def parse_resume(
     )
 
     try:
-        result = await claude.extract_skills(
+        result = await groq_svc.extract_skills(
             resume_text=payload.resume_text,
             jd_text=payload.jd_text,
             skill_ids=skill_ids,
         )
     except RuntimeError as exc:
-        # Missing API key
         logger.error("Configuration error in /parse: %s", exc)
         raise HTTPException(status_code=503, detail=str(exc)) from exc
-    except anthropic.APIStatusError as exc:
-        logger.error("Anthropic API error in /parse: status=%d msg=%s", exc.status_code, exc.message)
+    except groq.APIStatusError as exc:
+        logger.error("Groq API error in /parse: status=%d msg=%s", exc.status_code, exc.message)
         raise HTTPException(
             status_code=503,
-            detail=f"Anthropic API returned an error (HTTP {exc.status_code}). "
+            detail=f"Groq API returned an error (HTTP {exc.status_code}). "
                    "Check your API key and quota.",
         ) from exc
-    except anthropic.APIConnectionError as exc:
-        logger.error("Anthropic connection error in /parse: %s", exc)
+    except groq.APIConnectionError as exc:
+        logger.error("Groq connection error in /parse: %s", exc)
         raise HTTPException(
             status_code=503,
-            detail="Could not reach the Anthropic API. Check your network connection.",
-        ) from exc
-    except ValueError as exc:
-        # JSON parse failure from Claude response
-        logger.error("Claude returned unparseable response in /parse: %s", exc)
-        raise HTTPException(
-            status_code=500,
-            detail=f"Claude returned an unparseable response: {exc}",
+            detail="Could not reach the Groq API. Check your network connection.",
         ) from exc
     except Exception as exc:
         logger.exception("Unexpected error in /parse")

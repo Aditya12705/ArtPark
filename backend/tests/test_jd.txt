@@ -1,0 +1,19 @@
+JOB DESCRIPTION: Lead AI Engineer (RAG & Agents)
+
+We are looking for a visionary Lead AI Engineer to architect our next-generation knowledge management platform.
+
+CORE REQUIREMENTS (High Cognitive Load):
+- Architect and implement RAG (Retrieval-Augmented Generation) pipelines.
+- Develop autonomous agents using LangChain or AutoGen.
+- Optimize vector database performance (Pinecone, Weaviate, or Milvus).
+- Fine-tune Open Source LLMs (Llama 3, Mistral) for specific domain tasks.
+
+LEADERSHIP & STRATEGY (Low Cognitive Load break):
+- Mentor the engineering team on AI best practices.
+- Define the technical roadmap for AI integration.
+- Collaborate with product and design teams.
+
+QUALIFICATIONS:
+- 5+ years of Python experience.
+- Deep understanding of distributed systems.
+- Proven track record of leading technical teams.

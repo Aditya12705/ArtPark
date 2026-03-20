@@ -1,7 +1,74 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg: #0a0a0c;
+    --primary: #bfff00; /* Slime Green */
+    --secondary: #ff5f00; /* Safety Orange */
+    --accent: #ff00ff; /* Laser Pink */
+    --border: #ffffff15;
+    --text: #ffffff;
+    --text-muted: #888888;
+  }
+
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 32px 32px;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .neo-card {
+    background: #111114;
+    border: 2px solid var(--border);
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.4);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+
+  .neo-card:hover {
+    border-color: var(--primary);
+    transform: translate(-4px, -4px);
+    box-shadow: 16px 16px 0px rgba(191,255,0,0.1);
+  }
+
+  .neo-button {
+    background: var(--primary);
+    color: #000;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1.25rem 2.5rem;
+    border: 2px solid #000;
+    box-shadow: 6px 6px 0px #000;
+    transition: all 0.1s;
+    cursor: pointer;
+  }
+
+  .neo-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+  }
+
+  .neo-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .neo-input {
+    background: #000000;
+    border: 2px solid var(--border);
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .neo-input:focus {
+    border-color: var(--primary);
+    outline: none;
   }
 }

@@ -1,0 +1,15 @@
+CANDIDATE: John Doe
+TARGET ROLE: Senior Python Architect
+
+SKILLS SUMMARY:
+- Python (Expert): Used extensively from 2012 to 2018 at TechCorp. Built scalable microservices.
+- SQL (Advanced): Last used in 2020.
+- Soft Skills (Beginner): Lead a small team for 6 months in 2017.
+
+WORK HISTORY:
+Senior Developer @ TechCorp (2012 - 2018)
+- Architected Python backends.
+- Managed SQL databases.
+
+Note: Has not touched Python or SQL in a professional capacity since early 2018.
+Candidate is looking to re-enter the workforce in a high-level Python role.

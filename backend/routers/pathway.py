@@ -48,7 +48,9 @@ def get_pathway_builder(request: Request) -> PathwayBuilder:
     """
     course_catalog: List[Dict[str, Any]] = getattr(request.app.state, "course_catalog", [])
     skills_graph: Dict[str, Any]         = getattr(request.app.state, "skills_graph",   {})
-    return PathwayBuilder(course_catalog=course_catalog, skills_graph=skills_graph)
+    # Inject GroqService for reasoning traces
+    from services.groq_service import GroqService
+    return PathwayBuilder(course_catalog=course_catalog, skills_graph=skills_graph, groq_svc=GroqService())
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -195,6 +197,7 @@ async def generate_pathway(
             candidate_skills=candidate_skills,
             already_competent=payload.already_competent,
             max_courses=payload.max_courses,
+            max_hours=payload.max_hours if payload.max_hours is not None else None,
         )
     except Exception as exc:
         logger.exception("Unexpected error in /pathway")
@@ -204,14 +207,28 @@ async def generate_pathway(
         ) from exc
 
     # Step 3: Assemble PathwayResponse
-    pathway_steps: List[CourseRecommendation] = [
-        CourseRecommendation(**course_dict)
-        for course_dict in result.get("pathway", [])
-    ]
+    pathway_steps: List[CourseRecommendation] = []
+    traces = result.get("reasoning_traces", {})
+    
+    for course_dict in result.get("pathway", []):
+        cid = course_dict["id"]
+        # Map fields to match CourseRecommendation schema
+        mapped_dict = {
+            "course_id": cid,
+            "title": course_dict.get("title", "Unknown Course"),
+            "provider": course_dict.get("provider", "Internal"),
+            "url": course_dict.get("url", "#"),
+            "duration_hours": float(course_dict.get("duration_hours", 0)),
+            "level": course_dict.get("level", "beginner"),
+            "skills_addressed": course_dict.get("teaches", course_dict.get("covers_skills", [])),
+            "reasoning": traces.get(cid, "Strategic choice to address your primary skill gaps."),
+            "cognitive_load": course_dict.get("cognitive_load", "low")
+        }
+        pathway_steps.append(CourseRecommendation(**mapped_dict))
 
     total_hours: int = result.get("estimated_total_hours", 0)
     skipped: List[str] = result.get("skipped_courses", [])
-    traces: Dict[str, str] = result.get("reasoning_traces", {})
+    traces: Dict[str, str] = result.get("reasoning_traces", {}) # Keep for return if needed, though traces is merged above
 
     # Build a human-readable summary
     summary = _build_summary(
@@ -220,6 +237,7 @@ async def generate_pathway(
         n_missing=len(gap_response.missing_entirely),
         total_hours=total_hours,
         skipped=skipped,
+        max_hours=payload.max_hours,
     )
 
     logger.info(
@@ -246,6 +264,7 @@ def _build_summary(
     n_missing: int,
     total_hours: int,
     skipped: List[str],
+    max_hours: Optional[int] = None,
 ) -> str:
     """Generate a 2–3 sentence narrative pathway summary."""
     missing_note = (
@@ -258,10 +277,16 @@ def _build_summary(
         if skipped
         else ""
     )
+    budget_note = (
+        f"Pathway trimmed to your {max_hours}-hour budget — additional gaps may need separate sprints. "
+        if max_hours is not None and total_hours >= max_hours - 5
+        else ""
+    )
     return (
         f"Your personalised pathway addresses {n_gaps} skill gap(s) across {n_courses} course(s) "
         f"(approximately {total_hours} hours of learning). "
         f"{missing_note}"
+        f"{budget_note}"
         f"{skip_note}"
         "Courses are ordered so each one's prerequisites are always covered before it."
     ).strip()

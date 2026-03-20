@@ -77,7 +77,7 @@ async def compute_gap(
 
     try:
         result = engine.compute(
-            candidate_skills=payload.candidate_skills,
+            extracted_skills=payload.candidate_skills,
             required_skills=payload.required_skills,
             propagate=True,
         )

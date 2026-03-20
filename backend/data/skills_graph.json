@@ -285,5 +285,105 @@
     "category": "soft_skills",
     "description": "Identifying stakeholders, managing expectations, escalation, and executive reporting.",
     "prerequisites": ["project_management"]
+  },
+
+  "hr_fundamentals": {
+    "id": "hr_fundamentals",
+    "name": "HR Fundamentals",
+    "category": "operations",
+    "description": "Recruitment lifecycle, employee relations, onboarding, HR compliance, and labour law basics.",
+    "prerequisites": ["communication_fundamentals"]
+  },
+  "recruitment_and_talent": {
+    "id": "recruitment_and_talent",
+    "name": "Recruitment & Talent Acquisition",
+    "category": "operations",
+    "description": "Job profiling, sourcing, interviewing, offer management, and employer branding.",
+    "prerequisites": ["hr_fundamentals"]
+  },
+  "performance_management": {
+    "id": "performance_management",
+    "name": "Performance Management",
+    "category": "operations",
+    "description": "OKRs, KPIs, appraisal cycles, 360 feedback, and performance improvement plans.",
+    "prerequisites": ["hr_fundamentals", "communication_fundamentals"]
+  },
+  "financial_analysis": {
+    "id": "financial_analysis",
+    "name": "Financial Analysis",
+    "category": "finance",
+    "description": "P&L statements, balance sheets, cash flow, ratio analysis, and financial modelling.",
+    "prerequisites": ["accounting_basics"]
+  },
+  "accounting_basics": {
+    "id": "accounting_basics",
+    "name": "Accounting Basics",
+    "category": "finance",
+    "description": "Debits, credits, double-entry bookkeeping, trial balance, and basic journal entries.",
+    "prerequisites": []
+  },
+  "budgeting_and_forecasting": {
+    "id": "budgeting_and_forecasting",
+    "name": "Budgeting & Forecasting",
+    "category": "finance",
+    "description": "Variance analysis, rolling forecasts, zero-based budgeting, and cost centre management.",
+    "prerequisites": ["financial_analysis"]
+  },
+  "supply_chain_basics": {
+    "id": "supply_chain_basics",
+    "name": "Supply Chain Fundamentals",
+    "category": "operations",
+    "description": "Procurement, inventory management, demand forecasting, logistics, and vendor management.",
+    "prerequisites": []
+  },
+  "operations_management": {
+    "id": "operations_management",
+    "name": "Operations Management",
+    "category": "operations",
+    "description": "Process optimisation, lean/Six Sigma principles, capacity planning, and quality control.",
+    "prerequisites": ["supply_chain_basics"]
+  },
+  "customer_service": {
+    "id": "customer_service",
+    "name": "Customer Service Excellence",
+    "category": "operations",
+    "description": "Handling enquiries, complaint resolution, SLA adherence, CRM tools, and NPS management.",
+    "prerequisites": ["communication_fundamentals"]
+  },
+  "sales_fundamentals": {
+    "id": "sales_fundamentals",
+    "name": "Sales Fundamentals",
+    "category": "business",
+    "description": "Prospecting, needs analysis, objection handling, closing techniques, and CRM hygiene.",
+    "prerequisites": ["communication_fundamentals"]
+  },
+  "marketing_basics": {
+    "id": "marketing_basics",
+    "name": "Marketing Fundamentals",
+    "category": "business",
+    "description": "Market segmentation, buyer personas, content strategy, SEO basics, and campaign analytics.",
+    "prerequisites": []
+  },
+  "healthcare_fundamentals": {
+    "id": "healthcare_fundamentals",
+    "name": "Healthcare Operations Fundamentals",
+    "category": "healthcare",
+    "description": "Clinical workflows, patient safety, HIPAA compliance, EMR systems, and healthcare quality.",
+    "prerequisites": []
+  },
+  "microsoft_office": {
+    "id": "microsoft_office",
+    "name": "Microsoft Office Suite",
+    "category": "productivity",
+    "description": "Excel (formulas, pivot tables, VLOOKUP), Word, PowerPoint, and Outlook for professional use.",
+    "prerequisites": []
+  },
+  "data_literacy": {
+    "id": "data_literacy",
+    "name": "Data Literacy & Business Intelligence",
+    "category": "business",
+    "description": "Reading dashboards, interpreting KPIs, basic analytics, and data-driven decision making.",
+    "prerequisites": ["microsoft_office"]
   }
 }
+
