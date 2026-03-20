@@ -1,0 +1,305 @@
+# PathForge Course Catalog – Software Engineering Domain
+# 25 courses covering all 40 skills in skills_graph.json
+# Non-technical / soft-skills courses: pm_101, agile_deep, tech_writing_101, stakeholder_pro, leadership_eng
+
+courses:
+
+  # ── PROGRAMMING ─────────────────────────────────────────────────────────────
+
+  - id: py_zero_to_hero
+    title: "Python Zero to Hero"
+    provider: Coursera
+    url: "https://www.coursera.org/learn/python-zero-to-hero"
+    duration_hours: 24
+    level: beginner
+    teaches: [python_basics, python_oop]
+    requires: []
+    description: "Covers Python fundamentals through object-oriented programming with hands-on projects."
+
+  - id: py_advanced_mastery
+    title: "Advanced Python Mastery"
+    provider: Real Python
+    url: "https://realpython.com/courses/advanced-python/"
+    duration_hours: 16
+    level: advanced
+    teaches: [python_advanced]
+    requires: [python_oop]
+    description: "Deep-dives into decorators, generators, async programming, and Python performance tuning."
+
+  - id: js_fullstack
+    title: "JavaScript From Zero to Advanced"
+    provider: Udemy
+    url: "https://www.udemy.com/course/the-complete-javascript-course/"
+    duration_hours: 69
+    level: beginner
+    teaches: [javascript_basics, javascript_advanced]
+    requires: []
+    description: "Comprehensive JavaScript course covering both fundamentals and advanced patterns with real projects."
+
+  - id: ts_essentials
+    title: "TypeScript Essentials"
+    provider: Frontend Masters
+    url: "https://frontendmasters.com/courses/typescript-v4/"
+    duration_hours: 14
+    level: intermediate
+    teaches: [typescript]
+    requires: [javascript_advanced]
+    description: "Teaches TypeScript's type system, generics, decorators, and best practices for large codebases."
+
+  - id: dsa_python
+    title: "Data Structures & Algorithms in Python"
+    provider: edX
+    url: "https://www.edx.org/course/data-structures-and-algorithms"
+    duration_hours: 30
+    level: intermediate
+    teaches: [algorithms_and_ds]
+    requires: [python_basics]
+    description: "Rigorous coverage of classic data structures and algorithms with Python implementations and Big-O analysis."
+
+  - id: sql_zero_to_pro
+    title: "SQL from Zero to Pro"
+    provider: DataCamp
+    url: "https://www.datacamp.com/tracks/sql-fundamentals"
+    duration_hours: 20
+    level: beginner
+    teaches: [sql_basics, advanced_sql]
+    requires: []
+    description: "Progressively teaches SQL from basic queries through window functions, CTEs, and query optimisation."
+
+  - id: api_design_fastapi
+    title: "REST API Design with FastAPI"
+    provider: TestDriven.io
+    url: "https://testdriven.io/courses/tdd-fastapi/"
+    duration_hours: 12
+    level: intermediate
+    teaches: [rest_api_design]
+    requires: [python_basics]
+    description: "Hands-on course building production-grade REST APIs with FastAPI, Pydantic, and pytest."
+
+  - id: tdd_python
+    title: "Test-Driven Development with Python"
+    provider: O'Reilly
+    url: "https://www.oreilly.com/library/view/test-driven-development-with/9781491958919/"
+    duration_hours: 18
+    level: intermediate
+    teaches: [testing_fundamentals]
+    requires: [python_basics]
+    description: "Teaches TDD methodology with pytest, mock objects, and integration testing in a real Django application."
+
+  - id: system_design_interview
+    title: "System Design for Engineers"
+    provider: Educative
+    url: "https://www.educative.io/courses/grokking-the-system-design-interview"
+    duration_hours: 25
+    level: advanced
+    teaches: [system_design]
+    requires: [rest_api_design, sql_basics, algorithms_and_ds]
+    description: "Walks through designing scalable distributed systems including Twitter, YouTube, and Uber-style architectures."
+
+  # ── DATA ─────────────────────────────────────────────────────────────────────
+
+  - id: numpy_pandas_bootcamp
+    title: "NumPy & Pandas Bootcamp"
+    provider: DataCamp
+    url: "https://www.datacamp.com/tracks/data-analyst-with-python"
+    duration_hours: 22
+    level: beginner
+    teaches: [numpy, pandas]
+    requires: [python_basics]
+    description: "Hands-on introduction to numerical computing and tabular data manipulation using NumPy and Pandas."
+
+  - id: data_viz_python
+    title: "Data Visualisation with Python"
+    provider: Coursera
+    url: "https://www.coursera.org/learn/python-for-data-visualization"
+    duration_hours: 12
+    level: beginner
+    teaches: [data_visualisation]
+    requires: [pandas]
+    description: "Creates compelling charts and dashboards using Matplotlib, Seaborn, and Plotly Express."
+
+  - id: stats_for_ds
+    title: "Statistics for Data Science"
+    provider: Khan Academy
+    url: "https://www.khanacademy.org/math/statistics-probability"
+    duration_hours: 30
+    level: beginner
+    teaches: [statistics]
+    requires: []
+    description: "Covers probability, distributions, hypothesis testing, and regression analysis with intuitive examples."
+
+  - id: ml_specialisation
+    title: "Machine Learning Specialisation"
+    provider: Coursera (Andrew Ng)
+    url: "https://www.coursera.org/specializations/machine-learning-introduction"
+    duration_hours: 60
+    level: intermediate
+    teaches: [machine_learning_fundamentals]
+    requires: [numpy, pandas, statistics]
+    description: "The definitive ML specialisation covering supervised, unsupervised, and reinforcement learning algorithms."
+
+  - id: deep_learning_spec
+    title: "Deep Learning Specialisation"
+    provider: Coursera (deeplearning.ai)
+    url: "https://www.coursera.org/specializations/deep-learning"
+    duration_hours: 80
+    level: advanced
+    teaches: [deep_learning]
+    requires: [machine_learning_fundamentals]
+    description: "Five-course series building neural networks from scratch through CNNs, RNNs, and sequence models."
+
+  - id: huggingface_nlp
+    title: "NLP with Hugging Face Transformers"
+    provider: Hugging Face
+    url: "https://huggingface.co/learn/nlp-course"
+    duration_hours: 28
+    level: advanced
+    teaches: [nlp_basics]
+    requires: [machine_learning_fundamentals]
+    description: "Teaches tokenisation, fine-tuning BERT/GPT models, and building NLP pipelines with the Transformers library."
+
+  - id: mlops_practical
+    title: "Practical MLOps"
+    provider: O'Reilly
+    url: "https://www.oreilly.com/library/view/practical-mlops/9781098103002/"
+    duration_hours: 35
+    level: advanced
+    teaches: [mlops]
+    requires: [machine_learning_fundamentals, docker, ci_cd]
+    description: "Covers the full ML lifecycle from experiment tracking with MLflow to model serving and production monitoring."
+
+  - id: data_engineering_zoomcamp
+    title: "Data Engineering Zoomcamp"
+    provider: DataTalks.Club
+    url: "https://github.com/DataTalksClub/data-engineering-zoomcamp"
+    duration_hours: 50
+    level: intermediate
+    teaches: [data_engineering]
+    requires: [advanced_sql, python_advanced]
+    description: "Free intensive course covering Spark, Airflow, dbt, BigQuery, and building end-to-end data pipelines."
+
+  # ── DEVOPS ───────────────────────────────────────────────────────────────────
+
+  - id: linux_shell_mastery
+    title: "Linux Command Line & Shell Scripting"
+    provider: edX (Linux Foundation)
+    url: "https://www.edx.org/course/introduction-to-linux"
+    duration_hours: 18
+    level: beginner
+    teaches: [linux_cli, git_basics]
+    requires: []
+    description: "Teaches Linux filesystem, process management, bash scripting, and collaborative Git workflows from scratch."
+
+  - id: docker_kubernetes
+    title: "Docker & Kubernetes: The Practical Guide"
+    provider: Udemy
+    url: "https://www.udemy.com/course/docker-kubernetes-the-practical-guide/"
+    duration_hours: 23
+    level: intermediate
+    teaches: [docker, kubernetes]
+    requires: [linux_cli]
+    description: "Builds containerised applications with Docker and orchestrates them at scale using Kubernetes and Helm."
+
+  - id: cicd_github_actions
+    title: "CI/CD with GitHub Actions"
+    provider: GitHub Learning Lab
+    url: "https://lab.github.com/githubtraining/github-actions"
+    duration_hours: 10
+    level: intermediate
+    teaches: [ci_cd]
+    requires: [git_basics, docker]
+    description: "Designs multi-stage GitHub Actions pipelines for automated testing, linting, security scanning, and deployment."
+
+  - id: terraform_iac
+    title: "Infrastructure as Code with Terraform"
+    provider: HashiCorp Learn
+    url: "https://developer.hashicorp.com/terraform/tutorials"
+    duration_hours: 20
+    level: intermediate
+    teaches: [infrastructure_as_code]
+    requires: [cloud_fundamentals, linux_cli]
+    description: "Provisions cloud infrastructure on AWS, GCP, and Azure using Terraform modules and remote state."
+
+  - id: observability_stack
+    title: "Monitoring & Observability with Prometheus and Grafana"
+    provider: Linux Foundation
+    url: "https://training.linuxfoundation.org/training/monitoring-systems-and-services-with-prometheus-lfs241/"
+    duration_hours: 16
+    level: advanced
+    teaches: [monitoring_observability]
+    requires: [docker, kubernetes]
+    description: "Sets up Prometheus scraping, Grafana dashboards, Alertmanager rules, and distributed tracing with Jaeger."
+
+  # ── CLOUD ─────────────────────────────────────────────────────────────────────
+
+  - id: aws_saa_prep
+    title: "AWS Solutions Architect Associate"
+    provider: A Cloud Guru
+    url: "https://acloudguru.com/course/aws-certified-solutions-architect-associate-saa-c03"
+    duration_hours: 42
+    level: intermediate
+    teaches: [cloud_fundamentals, aws_core, cloud_security]
+    requires: [linux_cli]
+    description: "Prepares for the AWS SAA exam covering EC2, S3, VPC, IAM, RDS, and cloud security best practices."
+
+  - id: gcp_fundamentals
+    title: "Google Cloud Fundamentals & Core Services"
+    provider: Google Cloud Training
+    url: "https://cloud.google.com/training/courses/cloud-engineer-learning-path"
+    duration_hours: 24
+    level: intermediate
+    teaches: [gcp_core, serverless]
+    requires: [cloud_fundamentals]
+    description: "Covers GCP core services including Compute Engine, BigQuery, Cloud Run, and serverless event-driven patterns."
+
+  # ── SOFT SKILLS (5 non-technical courses) ────────────────────────────────────
+
+  - id: agile_deep
+    title: "Agile & Scrum Masterclass"
+    provider: Scrum Alliance
+    url: "https://www.scrumalliance.org/get-certified/practitioners/csm-certification"
+    duration_hours: 14
+    level: beginner
+    teaches: [agile_scrum, communication_fundamentals]
+    requires: []
+    description: "Covers Scrum ceremonies, sprint planning, backlog refinement, and Agile mindset for teams of any size."
+
+  - id: tech_writing_101
+    title: "Technical Writing for Engineers"
+    provider: Google (free)
+    url: "https://developers.google.com/tech-writing"
+    duration_hours: 8
+    level: beginner
+    teaches: [technical_writing]
+    requires: [communication_fundamentals]
+    description: "Google's free course teaching engineers to write clear documentation, API guides, and technical specifications."
+
+  - id: pm_101
+    title: "Project Management Fundamentals"
+    provider: PMI / Coursera
+    url: "https://www.coursera.org/professional-certificates/google-project-management"
+    duration_hours: 180
+    level: beginner
+    teaches: [project_management]
+    requires: [agile_scrum]
+    description: "Google's PM certificate covering initiation, planning, execution, risk, and Agile project management."
+
+  - id: stakeholder_pro
+    title: "Stakeholder Management & Executive Communication"
+    provider: LinkedIn Learning
+    url: "https://www.linkedin.com/learning/stakeholder-management"
+    duration_hours: 6
+    level: intermediate
+    teaches: [stakeholder_management]
+    requires: [project_management]
+    description: "Teaches techniques for mapping stakeholders, managing expectations, and delivering impactful executive updates."
+
+  - id: leadership_eng
+    title: "Engineering Leadership & Team Management"
+    provider: Reforge
+    url: "https://www.reforge.com/programs/engineering-leadership"
+    duration_hours: 20
+    level: advanced
+    teaches: [team_leadership]
+    requires: [project_management, communication_fundamentals]
+    description: "Practical program for senior engineers and leads covering mentoring, delegation, 1-on-1s, and building team culture."

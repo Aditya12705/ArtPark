@@ -1,0 +1,289 @@
+{
+  "python_basics": {
+    "id": "python_basics",
+    "name": "Python Basics",
+    "category": "programming",
+    "description": "Variables, data types, control flow, functions, and basic I/O in Python.",
+    "prerequisites": []
+  },
+  "python_oop": {
+    "id": "python_oop",
+    "name": "Python OOP",
+    "category": "programming",
+    "description": "Classes, inheritance, encapsulation, polymorphism, and dunder methods.",
+    "prerequisites": ["python_basics"]
+  },
+  "python_advanced": {
+    "id": "python_advanced",
+    "name": "Advanced Python",
+    "category": "programming",
+    "description": "Decorators, generators, async/await, type hints, and performance profiling.",
+    "prerequisites": ["python_oop"]
+  },
+  "javascript_basics": {
+    "id": "javascript_basics",
+    "name": "JavaScript Basics",
+    "category": "programming",
+    "description": "Core JS syntax, DOM manipulation, events, ES6+ features, and fetch API.",
+    "prerequisites": []
+  },
+  "javascript_advanced": {
+    "id": "javascript_advanced",
+    "name": "Advanced JavaScript",
+    "category": "programming",
+    "description": "Closures, prototypes, promises, async/await, modules, and design patterns.",
+    "prerequisites": ["javascript_basics"]
+  },
+  "typescript": {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "programming",
+    "description": "Static typing, interfaces, generics, decorators, and tsconfig setup.",
+    "prerequisites": ["javascript_advanced"]
+  },
+  "algorithms_and_ds": {
+    "id": "algorithms_and_ds",
+    "name": "Algorithms & Data Structures",
+    "category": "programming",
+    "description": "Arrays, linked lists, trees, graphs, sorting, searching, and complexity analysis.",
+    "prerequisites": ["python_basics"]
+  },
+  "sql_basics": {
+    "id": "sql_basics",
+    "name": "SQL Fundamentals",
+    "category": "programming",
+    "description": "SELECT, JOIN, GROUP BY, indexes, subqueries, and relational schema design.",
+    "prerequisites": []
+  },
+  "advanced_sql": {
+    "id": "advanced_sql",
+    "name": "Advanced SQL & Query Optimisation",
+    "category": "programming",
+    "description": "Window functions, CTEs, execution plans, query tuning, and stored procedures.",
+    "prerequisites": ["sql_basics"]
+  },
+  "rest_api_design": {
+    "id": "rest_api_design",
+    "name": "REST API Design",
+    "category": "programming",
+    "description": "HTTP verbs, status codes, OpenAPI spec, versioning, pagination, and auth.",
+    "prerequisites": ["python_basics"]
+  },
+  "testing_fundamentals": {
+    "id": "testing_fundamentals",
+    "name": "Testing Fundamentals",
+    "category": "programming",
+    "description": "Unit tests, integration tests, mocking, TDD, and coverage measurement.",
+    "prerequisites": ["python_basics"]
+  },
+  "system_design": {
+    "id": "system_design",
+    "name": "System Design",
+    "category": "programming",
+    "description": "Scalability, load balancing, caching, CAP theorem, and distributed patterns.",
+    "prerequisites": ["rest_api_design", "sql_basics", "algorithms_and_ds"]
+  },
+  "numpy": {
+    "id": "numpy",
+    "name": "NumPy",
+    "category": "data",
+    "description": "N-dimensional arrays, broadcasting, vectorised operations, and linear algebra.",
+    "prerequisites": ["python_basics"]
+  },
+  "pandas": {
+    "id": "pandas",
+    "name": "Pandas",
+    "category": "data",
+    "description": "DataFrames, Series, data cleaning, merging, groupby, and time-series handling.",
+    "prerequisites": ["numpy"]
+  },
+  "data_visualisation": {
+    "id": "data_visualisation",
+    "name": "Data Visualisation",
+    "category": "data",
+    "description": "Matplotlib, Seaborn, and Plotly for exploratory analysis and presentation charts.",
+    "prerequisites": ["pandas"]
+  },
+  "statistics": {
+    "id": "statistics",
+    "name": "Statistics & Probability",
+    "category": "data",
+    "description": "Distributions, hypothesis testing, confidence intervals, and Bayesian thinking.",
+    "prerequisites": []
+  },
+  "machine_learning_fundamentals": {
+    "id": "machine_learning_fundamentals",
+    "name": "Machine Learning Fundamentals",
+    "category": "data",
+    "description": "Supervised/unsupervised learning, evaluation metrics, bias-variance tradeoff.",
+    "prerequisites": ["pandas", "statistics", "numpy"]
+  },
+  "deep_learning": {
+    "id": "deep_learning",
+    "name": "Deep Learning",
+    "category": "data",
+    "description": "Neural networks, backpropagation, CNNs, RNNs, and training at scale.",
+    "prerequisites": ["machine_learning_fundamentals"]
+  },
+  "nlp_basics": {
+    "id": "nlp_basics",
+    "name": "NLP Basics",
+    "category": "data",
+    "description": "Tokenisation, embeddings, TF-IDF, text classification, and sentiment analysis.",
+    "prerequisites": ["machine_learning_fundamentals"]
+  },
+  "mlops": {
+    "id": "mlops",
+    "name": "MLOps",
+    "category": "data",
+    "description": "Model serving, experiment tracking, feature stores, drift detection, and CI for ML.",
+    "prerequisites": ["machine_learning_fundamentals", "docker", "ci_cd"]
+  },
+  "data_engineering": {
+    "id": "data_engineering",
+    "name": "Data Engineering",
+    "category": "data",
+    "description": "ETL pipelines, Apache Spark, Airflow, data lakes, and streaming with Kafka.",
+    "prerequisites": ["advanced_sql", "python_advanced"]
+  },
+  "linux_cli": {
+    "id": "linux_cli",
+    "name": "Linux & Command Line",
+    "category": "devops",
+    "description": "Shell scripting, file system, process management, cron jobs, and SSH.",
+    "prerequisites": []
+  },
+  "git_basics": {
+    "id": "git_basics",
+    "name": "Git & Version Control",
+    "category": "devops",
+    "description": "Branching, merging, rebasing, pull requests, and collaborative Git workflows.",
+    "prerequisites": []
+  },
+  "docker": {
+    "id": "docker",
+    "name": "Docker",
+    "category": "devops",
+    "description": "Images, containers, Dockerfiles, volumes, networks, and Docker Compose.",
+    "prerequisites": ["linux_cli"]
+  },
+  "kubernetes": {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "category": "devops",
+    "description": "Pods, deployments, services, ConfigMaps, Helm charts, and cluster management.",
+    "prerequisites": ["docker"]
+  },
+  "ci_cd": {
+    "id": "ci_cd",
+    "name": "CI/CD Pipelines",
+    "category": "devops",
+    "description": "GitHub Actions, GitLab CI, pipeline design, automated testing, and deployments.",
+    "prerequisites": ["git_basics", "docker"]
+  },
+  "infrastructure_as_code": {
+    "id": "infrastructure_as_code",
+    "name": "Infrastructure as Code",
+    "category": "devops",
+    "description": "Terraform, Pulumi, and CloudFormation for reproducible cloud environments.",
+    "prerequisites": ["cloud_fundamentals", "linux_cli"]
+  },
+  "monitoring_observability": {
+    "id": "monitoring_observability",
+    "name": "Monitoring & Observability",
+    "category": "devops",
+    "description": "Prometheus, Grafana, ELK stack, distributed tracing, and SLO/SLA design.",
+    "prerequisites": ["docker", "kubernetes"]
+  },
+  "devsecops": {
+    "id": "devsecops",
+    "name": "DevSecOps",
+    "category": "devops",
+    "description": "OWASP Top 10, SAST/DAST tools, secrets management, and security gates in CI/CD.",
+    "prerequisites": ["ci_cd", "cloud_security"]
+  },
+  "cloud_fundamentals": {
+    "id": "cloud_fundamentals",
+    "name": "Cloud Fundamentals",
+    "category": "cloud",
+    "description": "Compute, storage, networking, IAM, and pricing models across major cloud providers.",
+    "prerequisites": ["linux_cli"]
+  },
+  "aws_core": {
+    "id": "aws_core",
+    "name": "AWS Core Services",
+    "category": "cloud",
+    "description": "EC2, S3, RDS, Lambda, VPC, IAM, and CloudWatch on Amazon Web Services.",
+    "prerequisites": ["cloud_fundamentals"]
+  },
+  "gcp_core": {
+    "id": "gcp_core",
+    "name": "GCP Core Services",
+    "category": "cloud",
+    "description": "Compute Engine, Cloud Storage, BigQuery, Cloud Run, and GKE on Google Cloud.",
+    "prerequisites": ["cloud_fundamentals"]
+  },
+  "azure_core": {
+    "id": "azure_core",
+    "name": "Azure Core Services",
+    "category": "cloud",
+    "description": "Virtual Machines, Blob Storage, Azure SQL, Functions, and Azure DevOps.",
+    "prerequisites": ["cloud_fundamentals"]
+  },
+  "serverless": {
+    "id": "serverless",
+    "name": "Serverless Architecture",
+    "category": "cloud",
+    "description": "Functions-as-a-Service, event-driven patterns, cold starts, and cost optimisation.",
+    "prerequisites": ["aws_core"]
+  },
+  "cloud_security": {
+    "id": "cloud_security",
+    "name": "Cloud Security",
+    "category": "cloud",
+    "description": "IAM policies, network security groups, encryption, compliance, and zero-trust.",
+    "prerequisites": ["cloud_fundamentals"]
+  },
+  "communication_fundamentals": {
+    "id": "communication_fundamentals",
+    "name": "Communication Fundamentals",
+    "category": "soft_skills",
+    "description": "Active listening, clear verbal and written communication, and feedback skills.",
+    "prerequisites": []
+  },
+  "technical_writing": {
+    "id": "technical_writing",
+    "name": "Technical Writing",
+    "category": "soft_skills",
+    "description": "Writing clear documentation, runbooks, RFCs, and user-facing guides.",
+    "prerequisites": ["communication_fundamentals"]
+  },
+  "agile_scrum": {
+    "id": "agile_scrum",
+    "name": "Agile & Scrum",
+    "category": "soft_skills",
+    "description": "Sprint planning, retrospectives, backlog grooming, and Agile ceremonies.",
+    "prerequisites": ["communication_fundamentals"]
+  },
+  "project_management": {
+    "id": "project_management",
+    "name": "Project Management",
+    "category": "soft_skills",
+    "description": "Scope, timeline, risk management, stakeholder reporting, and delivery tracking.",
+    "prerequisites": ["agile_scrum"]
+  },
+  "team_leadership": {
+    "id": "team_leadership",
+    "name": "Team Leadership",
+    "category": "soft_skills",
+    "description": "Mentoring, delegation, conflict resolution, 1-on-1s, and engineering culture.",
+    "prerequisites": ["project_management", "communication_fundamentals"]
+  },
+  "stakeholder_management": {
+    "id": "stakeholder_management",
+    "name": "Stakeholder Management",
+    "category": "soft_skills",
+    "description": "Identifying stakeholders, managing expectations, escalation, and executive reporting.",
+    "prerequisites": ["project_management"]
+  }
+}
