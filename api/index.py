@@ -12,10 +12,6 @@ from __future__ import annotations
 import json
 import logging
 import os
-import sys
-
-# Ensure backend/ is in sys.path for Vercel functions
-sys.path.append(os.path.dirname(__file__))
 from contextlib import asynccontextmanager
 from typing import Any, Dict, List
 
@@ -90,7 +86,6 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
-    root_path="/api",
     lifespan=lifespan,
 )
 
