@@ -28,10 +28,10 @@ function App() {
             className="flex items-center gap-4 group"
           >
             <div className="w-10 h-10 bg-[#bfff00] flex items-center justify-center border-2 border-black shadow-[4px_4px_0px_#ffffff20] group-hover:shadow-[4px_4px_0px_#ff5f00] transition-all">
-              <span className="text-black font-black text-lg">PF</span>
+              <span className="text-black font-black text-lg">NL</span>
             </div>
             <h1 className="text-2xl font-black tracking-tighter uppercase text-white">
-              Path<span className="text-[#bfff00]">Forge</span>
+              Nexus<span className="text-[#bfff00]">Learn</span>
               <span className="ml-2 text-[10px] font-mono text-white/30 tracking-widest border border-white/10 px-2 py-1">V2.0_INDUSTRIAL</span>
             </h1>
           </button>

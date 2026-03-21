@@ -1,5 +1,5 @@
 """
-schemas.py – Pydantic v2 models for all PathForge request / response types.
+schemas.py – Pydantic v2 models for all NexusLearn request / response types.
 
 Proficiency scale (1–5):
   1 = Awareness     – knows the concept exists

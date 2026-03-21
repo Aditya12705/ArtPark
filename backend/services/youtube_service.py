@@ -1,5 +1,5 @@
 """
-youtube_service.py – YouTube Data API v3 wrapper for PathForge.
+youtube_service.py – YouTube Data API v3 wrapper for NexusLearn.
 
 Used to dynamically discover real, working course URLs for skills
 not covered by the static course catalog (orphan gaps).

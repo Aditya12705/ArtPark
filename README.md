@@ -1,7 +1,7 @@
-# PathForge 🧠
+# NexusLearn 🧠
 ### AI-Adaptive Onboarding Engine — ARTPARK CodeForge Hackathon Submission
 
-> PathForge eliminates "one-size-fits-all" corporate onboarding by parsing a candidate's **real** capabilities and dynamically constructing the *minimum effective* learning sequence to reach role-specific competency — no wasted hours, no prerequisite violations, no hallucinations.
+> NexusLearn eliminates "one-size-fits-all" corporate onboarding by parsing a candidate's **real** capabilities and dynamically constructing the *minimum effective* learning sequence to reach role-specific competency — no wasted hours, no prerequisite violations, no hallucinations.
 
 ---
 
@@ -48,7 +48,7 @@ Current corporate onboarding relies on static, role-wide curricula. Every person
 
 ## 2. Solution Overview
 
-PathForge is a full-stack adaptive learning engine with the following properties:
+NexusLearn is a full-stack adaptive learning engine with the following properties:
 
 | Property | Description |
 |---|---|
@@ -67,7 +67,7 @@ PathForge is a full-stack adaptive learning engine with the following properties
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                              PathForge Pipeline                                 │
+│                              NexusLearn Pipeline                                 │
 │                                                                                 │
 │  [Resume Text]   +   [Job Description Text]                                     │
 │         │                    │                                                  │
@@ -288,7 +288,7 @@ Groq is instructed to produce exactly one sentence per course that references th
 ## 7. Project Structure
 
 ```
-PathForge/
+NexusLearn/
 │
 ├── backend/
 │   ├── main.py                    # FastAPI app entry point — lifespan, CORS, router wiring
@@ -815,7 +815,7 @@ Slide-in drawer (opens on "WHY_THIS?" click):
 
 ## 14. Cross-Domain Scalability
 
-PathForge is **not** a software-engineering-only tool. The system is domain-agnostic — the domain is determined entirely by what's in `skills_graph.json` and `course_catalog.yaml`.
+NexusLearn is **not** a software-engineering-only tool. The system is domain-agnostic — the domain is determined entirely by what's in `skills_graph.json` and `course_catalog.yaml`.
 
 | Domain | Skills in Graph | Sample Courses |
 |---|---|---|
@@ -906,8 +906,8 @@ All algorithmic feature verifications passed!
 
 ```bash
 # 1. Clone
-git clone https://github.com/Aditya12705/PathForge.git
-cd PathForge
+git clone https://github.com/Aditya12705/NexusLearn.git
+cd NexusLearn
 
 # 2. Configure API key
 cp backend/.env.example backend/.env
@@ -1024,4 +1024,4 @@ Multi-stage build: Vite build → Nginx serve.
 
 ---
 
-*PathForge v2.0 — Built for the ARTPARK CodeForge AI-Adaptive Onboarding Engine Hackathon Challenge*
+*NexusLearn v2.0 — Built for the ARTPARK CodeForge AI-Adaptive Onboarding Engine Hackathon Challenge*

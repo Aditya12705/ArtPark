@@ -1,5 +1,5 @@
 """
-groq_service.py – Groq Llama extraction for PathForge skill landscape.
+groq_service.py – Groq Llama extraction for NexusLearn skill landscape.
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ PROFICIENCY_MAX = 5
 def _build_system_prompt(skill_ids: List[str]) -> str:
     skill_list_str = "\n".join(f'  - "{s}"' for s in skill_ids)
     return f"""\
-You are PathForge's Skill Extraction Engine. Analyse a candidate's resume and a JD, then return a structured JSON object.
+You are NexusLearn's Skill Extraction Engine. Analyse a candidate's resume and a JD, then return a structured JSON object.
 
 PROFICIENCY SCALE:
 1=Awareness, 2=Beginner, 3=Intermediate, 4=Advanced, 5=Expert
@@ -214,7 +214,7 @@ class GroqService:
                 }
 
         prompt = f"""
-You are PathForge's AI reasoning engine. For each course in a personalised learning pathway,
+You are NexusLearn's AI reasoning engine. For each course in a personalised learning pathway,
 write a single, specific, data-grounded sentence explaining exactly WHY this course was chosen
 for THIS particular candidate.
 

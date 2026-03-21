@@ -1,5 +1,5 @@
 """
-pathway_builder.py – Pure-Python learning pathway construction for PathForge.
+pathway_builder.py – Pure-Python learning pathway construction for NexusLearn.
 """
 
 from __future__ import annotations

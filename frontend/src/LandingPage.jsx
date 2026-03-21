@@ -76,7 +76,7 @@ export default function LandingPage({ onStart }) {
             </h1>
 
             <p className="text-xl text-white/50 font-medium leading-relaxed max-w-lg mb-10">
-              PathForge parses your résumé, reads the job description, and builds the{' '}
+              NexusLearn parses your résumé, reads the job description, and builds the{' '}
               <span className="text-white font-bold">minimum effective learning sequence</span>{' '}
               to close your exact skill gaps — automatically. No generic curricula. No wasted hours.
             </p>
@@ -268,7 +268,7 @@ export default function LandingPage({ onStart }) {
               Not Just for <span className="text-[#ff5f00]">Developers</span>
             </h2>
             <p className="text-white/30 mt-4 font-mono text-sm max-w-xl mx-auto">
-              PathForge covers 8 professional domains — from ML engineers to warehouse ops managers.
+              NexusLearn covers 8 professional domains — from ML engineers to warehouse ops managers.
             </p>
           </div>
 

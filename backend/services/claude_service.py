@@ -1,5 +1,5 @@
 """
-claude_service.py – Anthropic Claude wrapper for PathForge skill extraction.
+claude_service.py – Anthropic Claude wrapper for NexusLearn skill extraction.
 
 Single public entry-point:
     extract_skills(resume_text, jd_text, skill_ids) -> ParseResponse
@@ -45,7 +45,7 @@ def _build_system_prompt(skill_ids: List[str]) -> str:
     skill_list_str = "\n".join(f'  - "{s}"' for s in skill_ids)
 
     return f"""\
-You are PathForge's Skill Extraction Engine, deployed inside a corporate onboarding \
+You are NexusLearn's Skill Extraction Engine, deployed inside a corporate onboarding \
 and career-development platform. Your sole task is to analyse a candidate's resume \
 and a job description, then return a structured JSON object describing the skill \
 landscape for that candidate-role pair.

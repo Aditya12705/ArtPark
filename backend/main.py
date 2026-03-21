@@ -1,5 +1,5 @@
 """
-main.py – PathForge FastAPI application entry-point.
+main.py – NexusLearn FastAPI application entry-point.
 
 Startup/shutdown lifecycle:
     - skills_graph.json  loaded once → app.state.skills_graph
@@ -74,7 +74,7 @@ async def lifespan(app: FastAPI):
 
     yield  # ← application runs here
 
-    logger.info("PathForge shutting down.")
+    logger.info("NexusLearn shutting down.")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -82,7 +82,7 @@ async def lifespan(app: FastAPI):
 # ─────────────────────────────────────────────────────────────────────────────
 
 app = FastAPI(
-    title="PathForge API",
+    title="NexusLearn API",
     description=(
         "AI-powered skill-gap analyser and personalised learning pathway generator "
         "for corporate onboarding and career development."
@@ -145,4 +145,4 @@ async def health(request: Request):
 
 @app.get("/", tags=["Health"], summary="Root redirect to docs")
 async def root():
-    return {"message": "Welcome to PathForge API. Visit /docs for the interactive UI."}
+    return {"message": "Welcome to NexusLearn API. Visit /docs for the interactive UI."}

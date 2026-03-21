@@ -1,5 +1,5 @@
 """
-gap_engine.py – Pure-Python skill gap computation for PathForge.
+gap_engine.py – Pure-Python skill gap computation for NexusLearn.
 
 No LLM calls. All logic is deterministic and unit-testable.
 

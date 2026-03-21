@@ -175,7 +175,7 @@ export default function UploadPage({ onComplete }) {
         })
       })
       if (!pathRes.ok) {
-        throw new Error(`Pathway generation failed (${pathRes.status})`)
+        throw new Error(`Synthesis failed (${pathRes.status})`)
       }
       const pathData = await pathRes.json()
       onComplete({ parseData, gapData, pathwayData: pathData })
