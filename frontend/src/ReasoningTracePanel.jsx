@@ -42,7 +42,7 @@ export default function ReasoningTracePanel({ course, gaps, pathway, onClose, on
       />
 
       {/* Slide-in Drawer */}
-      <div className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out border-l border-slate-200 flex flex-col ${course ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 right-0 h-full w-full sm:w-[500px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out border-l border-slate-200 flex flex-col ${course ? 'translate-x-0' : 'translate-x-full'}`}>
         
         {/* Header */}
         <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-start bg-slate-50/50">

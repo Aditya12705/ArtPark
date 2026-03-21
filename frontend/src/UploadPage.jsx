@@ -109,7 +109,7 @@ function FileDropZone({ title, value, onChange, placeholder }) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full h-full min-h-[350px] resize-none outline-none text-white font-mono text-sm bg-transparent placeholder-white/10 leading-relaxed"
+          className="w-full h-full min-h-[250px] sm:min-h-[350px] resize-none outline-none text-white font-mono text-sm bg-transparent placeholder-white/10 leading-relaxed"
         />
         <div className="absolute bottom-4 right-4 text-[10px] font-mono text-white/20 uppercase">
           Input_Buffer_Active
@@ -192,7 +192,7 @@ export default function UploadPage({ onComplete }) {
         <div className="inline-block px-3 py-1 bg-[#ff5f00]/10 border border-[#ff5f00]/30 text-[#ff5f00] text-[10px] font-black uppercase tracking-widest mb-4">
           System_Status: Operational
         </div>
-        <h2 className="text-6xl font-black text-white mb-6 tracking-tighter uppercase italic leading-[0.9]">
+        <h2 className="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tighter uppercase italic leading-[0.9]">
           Engineered <br/>for <span className="text-[#bfff00]">Mastery</span>
         </h2>
         <p className="text-xl text-white/40 max-w-xl font-medium">
@@ -262,7 +262,7 @@ export default function UploadPage({ onComplete }) {
               <button
                 onClick={handleGenerate}
                 disabled={!canSubmit}
-                className={`w-full py-8 neo-button text-3xl italic ${!canSubmit ? 'opacity-20 cursor-not-allowed grayscale' : ''}`}
+                className={`w-full py-6 sm:py-8 neo-button text-2xl sm:text-3xl italic ${!canSubmit ? 'opacity-20 cursor-not-allowed grayscale' : ''}`}
               >
                 INITIALIZE_SYNTHESIS
               </button>

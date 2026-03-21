@@ -68,7 +68,7 @@ export default function LandingPage({ onStart }) {
               ◉ System_Operational — ARTPARK CodeForge Hackathon Submission
             </div>
 
-            <h1 className="text-7xl lg:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85] mb-8">
+            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85] mb-8">
               Stop<br/>
               <span className="text-[#bfff00]">Wasting</span><br/>
               Training<br/>
@@ -84,7 +84,7 @@ export default function LandingPage({ onStart }) {
             <div className="flex flex-wrap gap-4 items-center">
               <button
                 onClick={onStart}
-                className="neo-button text-xl px-10 py-5"
+                className="neo-button text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-5"
               >
                 FORGE MY PATHWAY →
               </button>
@@ -122,7 +122,7 @@ export default function LandingPage({ onStart }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="text-[10px] font-black text-[#ff5f00] uppercase tracking-widest mb-4">The Problem</div>
-              <h2 className="text-5xl font-black text-white italic uppercase tracking-tighter leading-tight mb-8">
+              <h2 className="text-3xl sm:text-5xl font-black text-white italic uppercase tracking-tighter leading-tight mb-8">
                 One-Size-Fits-All<br/>
                 <span className="text-[#ff5f00]">Onboarding is Broken</span>
               </h2>
@@ -172,7 +172,7 @@ export default function LandingPage({ onStart }) {
           <div className="mb-16 flex items-end justify-between flex-wrap gap-6">
             <div>
               <div className="text-[10px] font-black text-[#bfff00] uppercase tracking-widest mb-4">How It Works</div>
-              <h2 className="text-5xl font-black text-white italic uppercase tracking-tighter leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-white italic uppercase tracking-tighter leading-tight">
                 The <span className="text-[#bfff00]">4-Stage</span> Pipeline
               </h2>
             </div>
@@ -264,7 +264,7 @@ export default function LandingPage({ onStart }) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="text-[10px] font-black text-[#ff5f00] uppercase tracking-widest mb-4">Cross-Domain Scalability</div>
-            <h2 className="text-5xl font-black text-white italic uppercase tracking-tighter">
+            <h2 className="text-3xl sm:text-5xl font-black text-white italic uppercase tracking-tighter">
               Not Just for <span className="text-[#ff5f00]">Developers</span>
             </h2>
             <p className="text-white/30 mt-4 font-mono text-sm max-w-xl mx-auto">
@@ -288,7 +288,7 @@ export default function LandingPage({ onStart }) {
       <section className="border-t-2 border-white/5 px-6 py-32">
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-[10px] font-black text-[#bfff00] uppercase tracking-widest mb-6">Ready?</div>
-          <h2 className="text-6xl lg:text-7xl font-black text-white italic uppercase tracking-tighter leading-[0.85] mb-10">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white italic uppercase tracking-tighter leading-[0.85] mb-10">
             Build Your<br/>
             <span className="text-[#bfff00]">Personalised</span><br/>
             Pathway Now
@@ -298,7 +298,7 @@ export default function LandingPage({ onStart }) {
           </p>
           <button
             onClick={onStart}
-            className="neo-button text-2xl px-14 py-6"
+            className="neo-button text-xl sm:text-2xl px-8 sm:px-14 py-4 sm:py-6"
           >
             INITIALIZE SYNTHESIS →
           </button>

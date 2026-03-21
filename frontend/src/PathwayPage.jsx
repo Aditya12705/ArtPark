@@ -75,10 +75,10 @@ export default function PathwayPage({ data }) {
              </div>
            )}
         </div>
-        <h2 className="text-6xl font-black text-white italic tracking-tighter uppercase leading-none mb-8">
+        <h2 className="text-4xl sm:text-6xl font-black text-white italic tracking-tighter uppercase leading-none mb-8">
           The <span className="text-[#ff5f00]">Tactical</span> Feed
         </h2>
-        <div className="neo-card p-10 bg-black/40 text-2xl font-medium leading-relaxed border-l-8 border-l-[#bfff00]">
+        <div className="neo-card p-6 sm:p-10 bg-black/40 text-xl sm:text-2xl font-medium leading-relaxed border-l-8 border-l-[#bfff00]">
           {pathway_summary || "Your personalised training pathway is ready."}
         </div>
       </div>
