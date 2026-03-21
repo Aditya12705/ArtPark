@@ -129,7 +129,7 @@ class ParseResponse(BaseModel):
         ...,
         description=(
             "Map of skill_id → {level: 1–5, last_used_year: int} inferred from the resume. "
-            "Only skills that Claude is confident about are included."
+            "Only skills that Groq Llama is confident about are included."
         ),
     )
     required_skills: Dict[str, int] = Field(
@@ -155,7 +155,7 @@ class ParseResponse(BaseModel):
     )
     model_used: Optional[str] = Field(
         None,
-        description="Identifier of the LLM model that performed the extraction, e.g. 'claude-opus-4-5'.",
+        description="Identifier of the LLM model that performed the extraction, e.g. 'llama-3.3-70b'.",
     )
     extraction_confidence: Optional[float] = Field(
         None,

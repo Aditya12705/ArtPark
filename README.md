@@ -960,7 +960,7 @@ npm run dev                  # Starts at http://localhost:5173
 |---|---|---|
 | `GROQ_API_KEY` | ✅ Yes | Groq API key — get one free at [console.groq.com](https://console.groq.com) |
 
-> No Anthropic API key is required. `claude_service.py` exists in the codebase as legacy code but is not called by any router.
+> No Anthropic API key is required. This project uses Groq exclusively for high-performance inference.
 
 ---
 
@@ -1000,9 +1000,11 @@ Multi-stage build: Vite build → Nginx serve.
 
 ## 20. Design Decisions & Trade-offs
 
+> No Anthropic API key is required. This project uses Groq exclusively for high-performance inference.
+
 | Decision | Rationale |
 |---|---|
-| **Single LLM (Groq Llama)** | Groq's inference API is free-tier friendly, extremely low latency, and sufficient for both extraction and reasoning tasks. Anthropic Claude was removed to simplify the API key requirements to exactly one. |
+| **Single LLM (Groq Llama)** | Groq's inference API is free-tier friendly, extremely low latency, and sufficient for both extraction and reasoning tasks. The system was optimized to simplify the API key requirements to exactly one. |
 | **LLM-free gap engine** | The gap computation, decay, and BFS propagation are pure Python — deterministic, unit-testable, zero-latency, and zero-cost. Only use LLMs where deterministic logic cannot substitute. |
 | **Closed-vocabulary allowlist** | The LLM is given a finite list of valid skill IDs and its output is validated against it. This is the most reliable approach to preventing skill hallucinations short of fine-tuning. |
 | **Mutable state for load balancing** | The `state = {"last_load": "low"}` pattern is necessary because Python closures capture variable references, not values — a plain `last_load` nonlocal would not update correctly within Kahn's within-batch loop. |

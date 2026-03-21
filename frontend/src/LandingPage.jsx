@@ -4,7 +4,7 @@ export default function LandingPage({ onStart }) {
       num: '01',
       label: 'Upload & Parse',
       color: '#bfff00',
-      desc: 'Drop your résumé and the job description. Claude Opus 4.5 extracts every skill mention with a proficiency score — no guessing, no hallucinations.',
+      desc: 'Drop your résumé and the job description. Groq Llama-3.3-70B extracts every skill mention with a proficiency score — no guessing, no hallucinations.',
       icon: '📄',
     },
     {
@@ -55,7 +55,7 @@ export default function LandingPage({ onStart }) {
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-20 max-w-7xl mx-auto">
         {/* Decorative corner marks */}
         <div className="absolute top-8 left-6 text-[#bfff00]/20 font-mono text-[10px] uppercase tracking-widest select-none">
-          PATHFORGE // V2.0_INDUSTRIAL
+          NEXUSLEARN // V2.0_INDUSTRIAL
         </div>
         <div className="absolute top-8 right-6 text-white/10 font-mono text-[10px] uppercase tracking-widest select-none">
           AI-ADAPTIVE ONBOARDING ENGINE
